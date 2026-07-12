@@ -37,200 +37,225 @@
       </button>
 
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#roles" data-section="roles">Product</a>
-        <a href="#benefits" data-section="benefits">Features</a>
-        <a href="#workflow" data-section="workflow">Workflow</a>
+        <a href="#product" data-section="product">Product</a>
+        <a href="#applicant" data-section="applicant">For applicants</a>
         <a href="#security" data-section="security">Security</a>
       </nav>
 
       <div class="header-actions">
-        <button class="btn btn-ghost" type="button" data-route="signin">Sign in</button>
-        <button class="btn btn-primary" type="button" data-route="signup">Create applicant account</button>
+        <button class="header-text-action" type="button" data-route="signin">HR sign in</button>
+        <button class="btn btn-primary header-primary" type="button" data-route="signup">View open roles</button>
       </div>
+
+      <details class="marketing-mobile-nav">
+        <summary aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </summary>
+        <div class="marketing-mobile-menu">
+          <a href="#product" data-section="product">Product</a>
+          <a href="#applicant" data-section="applicant">For applicants</a>
+          <a href="#security" data-section="security">Security</a>
+          <button type="button" data-route="signin">HR sign in</button>
+          <button class="btn btn-primary" type="button" data-route="signup">View open roles</button>
+        </div>
+      </details>
     </header>
 
     <main id="main">
-      <section id="landing-view" class="view is-active">
-        <section id="top" class="hero section-band">
-          <div class="hero-copy reveal">
-            <div class="hero-pill">
-              <span aria-hidden="true"></span>
-              One workspace for every hiring stage
-            </div>
-            <h1>Recruit with clarity, from vacancy to hire.</h1>
+      <section id="landing-view" class="view is-active marketing-site">
+        <section id="top" class="marketing-hero">
+          <div class="marketing-hero-copy reveal">
+            <span class="marketing-kicker">Recruitment workspace</span>
+            <h1>Keep every candidate moving.</h1>
             <p>
-              Publish roles, organize candidates, schedule interviews, and keep every hiring
-              decision visible in one secure recruitment workspace.
+              Publish vacancies, review applicants, schedule interviews, and make hiring decisions
+              without losing context between spreadsheets, emails, and chat threads.
             </p>
-            <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-route="signup">Explore open roles</button>
-              <button class="btn btn-secondary" type="button" data-route="signin">Sign in to workspace</button>
+            <div class="marketing-hero-actions">
+              <button class="btn btn-primary" type="button" data-route="signup">Browse open roles</button>
+              <button class="btn marketing-secondary-action" type="button" data-route="signin">HR sign in</button>
             </div>
-            <div class="hero-checks" aria-label="Platform highlights">
-              <span>Role-based access</span>
-              <span>Centralized candidate review</span>
-              <span>Responsive on every device</span>
+            <div class="marketing-proof" aria-label="HireFlow highlights">
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 10 3 3 7-7"/></svg> Private CV storage</span>
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 10 3 3 7-7"/></svg> Role-based access</span>
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 10 3 3 7-7"/></svg> Clear application status</span>
             </div>
           </div>
 
-          <div class="product-preview reveal" aria-label="HireFlow dashboard product preview">
-            <div class="preview-shell">
-              <aside class="preview-sidebar" aria-hidden="true">
-                <div class="preview-brand"><span class="brand-mark">H</span><strong>HireFlow</strong></div>
-                <div class="preview-user">
-                  <span class="preview-avatar">AM</span>
-                  <div><strong>Ama Mensah</strong><small>HR Manager</small></div>
-                </div>
-                <span class="preview-nav active">Overview</span>
-                <span class="preview-nav">Jobs</span>
-                <span class="preview-nav">Candidates</span>
-                <span class="preview-nav">Interviews</span>
+          <div class="candidate-screen reveal" aria-label="Candidate review interface preview">
+            <div class="candidate-screen-bar">
+              <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span>app.hireflow.local</span>
+              <div class="screen-bar-actions"><i></i><span>AM</span></div>
+            </div>
+            <div class="candidate-app">
+              <aside class="candidate-app-sidebar" aria-hidden="true">
+                <div class="candidate-logo"><span>H</span></div>
+                <button class="is-active"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/></svg></button>
+                <button><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5a2 2 0 0 1 2-2Z"/></svg></button>
+                <button><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></button>
+                <button><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z"/></svg></button>
               </aside>
-              <div class="preview-main">
-                <div class="preview-topbar">
-                  <div><small>Monday, July 13</small><h2>Good morning, Ama</h2></div>
-                  <span class="preview-button">+ Post a job</span>
+
+              <div class="candidate-workspace">
+                <header class="candidate-toolbar">
+                  <div>
+                    <span>Applications / Product Designer</span>
+                    <h2>Candidate review</h2>
+                  </div>
+                  <button><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Add candidate</button>
+                </header>
+
+                <div class="candidate-filters">
+                  <span class="is-active">All candidates <b>24</b></span>
+                  <span>Screening <b>8</b></span>
+                  <span>Interview <b>5</b></span>
+                  <div><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg> Search candidates</div>
                 </div>
-                <div class="preview-stats">
-                  <article><span>Open jobs</span><strong>12</strong><small>3 closing soon</small></article>
-                  <article><span>Total candidates</span><strong>186</strong><small>+24 this week</small></article>
-                  <article><span>Interviews</span><strong>8</strong><small>Next: 10:30 AM</small></article>
-                  <article><span>Hired</span><strong>14</strong><small>This quarter</small></article>
-                </div>
-                <div class="preview-grid">
-                  <section class="preview-panel">
-                    <div class="preview-panel-head"><div><small>Candidate pipeline</small><strong>Active applications</strong></div><span>View all</span></div>
-                    <div class="preview-pipeline">
-                      <div><span>Applied</span><strong>42</strong><i style="--bar: 82%"></i></div>
-                      <div><span>Screening</span><strong>21</strong><i style="--bar: 56%"></i></div>
-                      <div><span>Interview</span><strong>8</strong><i style="--bar: 32%"></i></div>
-                      <div><span>Offer</span><strong>4</strong><i style="--bar: 18%"></i></div>
+
+                <div class="candidate-content">
+                  <div class="candidate-table">
+                    <div class="candidate-row candidate-table-head"><span>Candidate</span><span>Stage</span><span>Applied</span><span>Rating</span></div>
+                    <div class="candidate-row is-selected">
+                      <span class="candidate-person"><i class="avatar-purple">KO</i><strong>Kofi Owusu<small>kofi.owusu@email.com</small></strong></span>
+                      <span><b class="stage stage-screening">Screening</b></span><span>Jul 10</span><span class="rating">★ 4.8</span>
                     </div>
-                  </section>
-                  <section class="preview-panel">
-                    <div class="preview-panel-head"><div><small>Upcoming</small><strong>Interviews</strong></div></div>
-                    <div class="preview-interview"><span class="preview-avatar purple">KO</span><div><strong>Kofi Owusu</strong><small>Product Designer · 10:30</small></div></div>
-                    <div class="preview-interview"><span class="preview-avatar green">EA</span><div><strong>Esi Addo</strong><small>HR Assistant · 13:00</small></div></div>
-                    <div class="preview-interview"><span class="preview-avatar orange">NB</span><div><strong>Nana Boateng</strong><small>Frontend Developer · 15:30</small></div></div>
-                  </section>
+                    <div class="candidate-row">
+                      <span class="candidate-person"><i class="avatar-green">EA</i><strong>Esi Addo<small>esi.addo@email.com</small></strong></span>
+                      <span><b class="stage stage-interview">Interview</b></span><span>Jul 09</span><span class="rating">★ 4.6</span>
+                    </div>
+                    <div class="candidate-row">
+                      <span class="candidate-person"><i class="avatar-orange">NB</i><strong>Nana Boateng<small>nana.b@email.com</small></strong></span>
+                      <span><b class="stage stage-applied">Applied</b></span><span>Jul 08</span><span class="rating">★ 4.3</span>
+                    </div>
+                    <div class="candidate-row">
+                      <span class="candidate-person"><i class="avatar-blue">AN</i><strong>Akosua Nyarko<small>akosua.n@email.com</small></strong></span>
+                      <span><b class="stage stage-offer">Offer</b></span><span>Jul 07</span><span class="rating">★ 4.9</span>
+                    </div>
+                  </div>
+
+                  <aside class="candidate-drawer">
+                    <div class="candidate-drawer-head"><span class="drawer-avatar avatar-purple">KO</span><div><h3>Kofi Owusu</h3><p>Product designer · Accra</p></div><button aria-label="Close preview">×</button></div>
+                    <div class="drawer-status"><span>Current stage</span><strong>Screening <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></strong></div>
+                    <div class="drawer-section"><span>Application</span><p>5 years of experience designing mobile and web products for growing teams.</p></div>
+                    <div class="drawer-tags"><span>Figma</span><span>Research</span><span>Design systems</span></div>
+                    <div class="drawer-section"><span>Next action</span><div class="interview-slot"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z"/></svg><div><strong>Portfolio review</strong><small>Tomorrow · 10:30 AM</small></div></div></div>
+                    <button class="drawer-primary">Move to interview</button>
+                  </aside>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="roles" class="section roles-section">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Purpose-built portals</span>
-            <h2>A focused experience for candidates and hiring teams.</h2>
-            <p>Each user sees the tools, records, and actions relevant to their role.</p>
-          </div>
-
-          <div class="role-grid">
-            <article class="role-card reveal">
-              <span class="role-icon" aria-hidden="true">01</span>
-              <span class="role-kicker">Applicant portal</span>
-              <h3>Find opportunities and follow every application.</h3>
-              <p>Build a reusable profile, upload a CV, apply to open roles, and see exactly where each application stands.</p>
-              <ul class="feature-list">
-                <li>Reusable profile and CV</li>
-                <li>Open-role discovery</li>
-                <li>Application and interview tracking</li>
-              </ul>
-            </article>
-
-            <article class="role-card role-card-dark reveal">
-              <span class="role-icon" aria-hidden="true">02</span>
-              <span class="role-kicker">HR workspace</span>
-              <h3>Move candidates forward without losing context.</h3>
-              <p>Publish vacancies, review candidate details, manage stages, add private notes, and schedule interviews.</p>
-              <ul class="feature-list">
-                <li>Job publishing and closing</li>
-                <li>Candidate pipeline and filters</li>
-                <li>Interview and decision tracking</li>
-              </ul>
-            </article>
-          </div>
+        <section id="workflow" class="process-strip reveal" aria-label="Recruitment process">
+          <span>Post a role</span><i aria-hidden="true">→</i>
+          <span>Receive applications</span><i aria-hidden="true">→</i>
+          <span>Review candidates</span><i aria-hidden="true">→</i>
+          <span>Interview</span><i aria-hidden="true">→</i>
+          <span>Decide</span>
         </section>
 
-        <section id="benefits" class="section benefits-section">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Core capabilities</span>
-            <h2>The essentials for a faster, more organized hiring process.</h2>
-            <p>Designed to reduce manual follow-up and keep recruitment information in one dependable place.</p>
-          </div>
+        <section id="product" class="product-tour-section">
+          <div class="product-tour-copy reveal">
+            <span class="marketing-kicker">One connected workflow</span>
+            <h2>The work stays organized, even when hiring gets busy.</h2>
+            <p>Move from vacancy setup to a final decision without rebuilding the same candidate context at every stage.</p>
 
-          <div class="benefit-grid">
-            <article class="benefit-card reveal"><span class="feature-icon">✓</span><h3>Secure account access</h3><p>Authentication and role-aware permissions protect applicant and hiring-team records.</p></article>
-            <article class="benefit-card reveal"><span class="feature-icon">◎</span><h3>Structured candidate profiles</h3><p>Contact details, skills, CV files, cover letters, and application history stay connected.</p></article>
-            <article class="benefit-card reveal"><span class="feature-icon">＋</span><h3>Flexible job publishing</h3><p>Create vacancies with department, workplace type, deadline, description, and requirements.</p></article>
-            <article class="benefit-card reveal"><span class="feature-icon">↗</span><h3>Visible hiring pipeline</h3><p>Move applicants through Applied, Screening, Interview, Offer, Hired, or Rejected stages.</p></article>
-            <article class="benefit-card reveal"><span class="feature-icon">⌁</span><h3>Responsive workspaces</h3><p>Review candidates and manage applications from desktop, tablet, or mobile.</p></article>
-            <article class="benefit-card reveal"><span class="feature-icon">◇</span><h3>Reliable cloud records</h3><p>Recruitment data is stored centrally and refreshed whenever your team makes an update.</p></article>
-          </div>
-        </section>
-
-        <section id="workflow" class="section workflow-section">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Recruitment workflow</span>
-            <h2>Every stage stays connected.</h2>
-            <p>Hiring teams and applicants always know the next step.</p>
-          </div>
-
-          <div class="workflow-track reveal" aria-label="Recruitment workflow">
-            <div class="workflow-node"><span>01</span><strong>Publish vacancy</strong><small>HR defines the role and opens applications.</small></div>
-            <div class="workflow-node"><span>02</span><strong>Receive applications</strong><small>Candidates submit profiles, CVs, and cover letters.</small></div>
-            <div class="workflow-node"><span>03</span><strong>Screen candidates</strong><small>HR filters profiles and records private notes.</small></div>
-            <div class="workflow-node"><span>04</span><strong>Schedule interviews</strong><small>Shortlisted candidates move into interview.</small></div>
-            <div class="workflow-node"><span>05</span><strong>Make a decision</strong><small>Offers, hires, and rejections are recorded clearly.</small></div>
-          </div>
-        </section>
-
-        <section id="security" class="section security-section">
-          <div class="security-panel reveal">
-            <div>
-              <span class="eyebrow">Security by design</span>
-              <h2>Candidate information stays in the right hands.</h2>
-              <p>Authentication, private file storage, database policies, and protected HR permissions keep sensitive recruitment records separated by role.</p>
-            </div>
-            <div class="security-list">
-              <span><b>01</b> Public registration creates Applicant accounts only</span>
-              <span><b>02</b> HR access is assigned by an authorized administrator</span>
-              <span><b>03</b> Row-level security protects database records</span>
-              <span><b>04</b> CV files use private storage and temporary links</span>
+            <div class="tour-tabs" role="tablist" aria-label="Product capabilities">
+              <button class="tour-tab is-active" type="button" role="tab" aria-selected="true" data-tour-target="vacancies">
+                <span>01</span><div><strong>Publish and manage vacancies</strong><small>Create clear roles with deadlines, workplace type, salary range, and requirements.</small></div>
+              </button>
+              <button class="tour-tab" type="button" role="tab" aria-selected="false" data-tour-target="candidates">
+                <span>02</span><div><strong>Review candidates in context</strong><small>Keep CVs, cover letters, skills, notes, and stage history in one place.</small></div>
+              </button>
+              <button class="tour-tab" type="button" role="tab" aria-selected="false" data-tour-target="decisions">
+                <span>03</span><div><strong>Move decisions forward</strong><small>Schedule interviews, update stages, and record clear outcomes.</small></div>
+              </button>
             </div>
           </div>
+
+          <div class="tour-stage reveal">
+            <article class="tour-panel is-active" data-tour-panel="vacancies">
+              <header><div><span>Jobs</span><h3>Open vacancies</h3></div><button>+ New vacancy</button></header>
+              <div class="tour-job-row tour-job-head"><span>Role</span><span>Applications</span><span>Deadline</span><span>Status</span></div>
+              <div class="tour-job-row"><span><i class="job-icon purple">PD</i><strong>Product Designer<small>Product · Hybrid</small></strong></span><span>24</span><span>Jul 28</span><span><b class="stage stage-offer">Open</b></span></div>
+              <div class="tour-job-row"><span><i class="job-icon blue">FE</i><strong>Frontend Developer<small>Engineering · Remote</small></strong></span><span>31</span><span>Aug 02</span><span><b class="stage stage-offer">Open</b></span></div>
+              <div class="tour-job-row"><span><i class="job-icon green">HR</i><strong>HR Assistant<small>People · On-site</small></strong></span><span>18</span><span>Jul 23</span><span><b class="stage stage-screening">Closing soon</b></span></div>
+              <div class="tour-summary"><span><strong>3</strong> active roles</span><span><strong>73</strong> total applicants</span><span><strong>11</strong> new this week</span></div>
+            </article>
+
+            <article class="tour-panel" data-tour-panel="candidates" hidden>
+              <header><div><span>Candidate pipeline</span><h3>Product Designer</h3></div><button>Filter</button></header>
+              <div class="mini-kanban">
+                <section><header><span>Applied</span><b>8</b></header><article><strong>Nana Boateng</strong><small>4 years experience</small><div><span>Figma</span><span>Mobile</span></div></article><article><strong>Adwoa Frimpong</strong><small>3 years experience</small><div><span>Research</span></div></article></section>
+                <section><header><span>Screening</span><b>5</b></header><article class="is-highlighted"><strong>Kofi Owusu</strong><small>Portfolio reviewed</small><div><span>Design systems</span></div></article><article><strong>Efua Mensimah</strong><small>CV reviewed</small><div><span>UX</span><span>Web</span></div></article></section>
+                <section><header><span>Interview</span><b>3</b></header><article><strong>Esi Addo</strong><small>Tomorrow · 13:00</small><div><span>Final round</span></div></article></section>
+              </div>
+            </article>
+
+            <article class="tour-panel" data-tour-panel="decisions" hidden>
+              <header><div><span>Interview schedule</span><h3>This week</h3></div><button>Calendar view</button></header>
+              <div class="interview-day"><span><strong>14</strong><small>Tue</small></span><div><i class="avatar-purple">KO</i><p><strong>Kofi Owusu</strong><small>Portfolio review · Product Designer</small></p><time>10:30</time></div></div>
+              <div class="interview-day"><span><strong>14</strong><small>Tue</small></span><div><i class="avatar-green">EA</i><p><strong>Esi Addo</strong><small>Culture interview · HR Assistant</small></p><time>13:00</time></div></div>
+              <div class="interview-day"><span><strong>16</strong><small>Thu</small></span><div><i class="avatar-blue">AN</i><p><strong>Akosua Nyarko</strong><small>Final interview · Product Designer</small></p><time>09:00</time></div></div>
+              <div class="decision-note"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm-1 14-4-4 1.4-1.4 2.6 2.6 5.6-5.6L18 9Z"/></svg><div><strong>Decision recorded</strong><span>Akosua Nyarko moved to Offer by Ama Mensah.</span></div></div>
+            </article>
+          </div>
         </section>
 
-        <section class="section reliability-section">
-          <div class="section-heading reveal">
-            <span class="eyebrow">A dependable foundation</span>
-            <h2>Simple architecture, clear responsibilities.</h2>
+        <section id="applicant" class="applicant-experience">
+          <div class="applicant-device reveal" aria-label="Applicant dashboard preview">
+            <div class="applicant-browser-bar"><div class="window-dots"><i></i><i></i><i></i></div><span>Applicant portal</span></div>
+            <div class="applicant-preview-shell">
+              <aside><div class="candidate-logo"><span>H</span></div><strong>HireFlow</strong><nav><span class="is-active">Overview</span><span>Open roles</span><span>My applications</span><span>Profile</span></nav></aside>
+              <main>
+                <header><div><span>Welcome back</span><h3>Hi, Abena</h3></div><i class="avatar-orange">AB</i></header>
+                <section class="profile-card"><div><span>Profile strength</span><strong>80% complete</strong><i><b></b></i></div><button>Complete profile</button></section>
+                <h4>Your applications</h4>
+                <div class="application-progress-row"><i class="job-icon purple">PD</i><div><strong>Product Designer</strong><small>Applied 4 days ago</small></div><span class="stage stage-screening">Screening</span></div>
+                <div class="application-progress-row"><i class="job-icon green">HR</i><div><strong>HR Assistant</strong><small>Interview tomorrow</small></div><span class="stage stage-interview">Interview</span></div>
+                <div class="application-timeline"><span class="is-done">Applied</span><i></i><span class="is-current">Screening</span><i></i><span>Interview</span><i></i><span>Decision</span></div>
+              </main>
+            </div>
           </div>
-          <div class="project-grid reveal">
-            <article class="project-card"><span>Experience</span><strong>Responsive web application</strong><p>Dedicated public, applicant, and HR interfaces with accessible navigation and forms.</p></article>
-            <article class="project-card"><span>Platform</span><strong>Supabase services</strong><p>Authentication, PostgreSQL, row-level security, and private CV storage.</p></article>
-            <article class="project-card"><span>Workflow</span><strong>Jobs and applications</strong><p>A focused data model supporting job publishing, candidate review, interviews, and outcomes.</p></article>
+
+          <div class="applicant-copy reveal">
+            <span class="marketing-kicker">For applicants</span>
+            <h2>A clearer application experience.</h2>
+            <p>Create one reusable profile, upload your CV, discover available roles, and see exactly where every application stands.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><div><strong>Private CV upload</strong><span>Keep your latest CV attached to your profile.</span></div></li>
+              <li><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/></svg><div><strong>Open-role discovery</strong><span>See role details before submitting an application.</span></div></li>
+              <li><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div><strong>Visible progress</strong><span>Follow each stage from application to final decision.</span></div></li>
+            </ul>
+            <button class="text-cta" type="button" data-route="signup">Create your applicant profile <span>→</span></button>
           </div>
         </section>
 
-        <section id="faq" class="section faq-section">
-          <div class="section-heading reveal"><span class="eyebrow">Frequently asked questions</span><h2>Everything you need to get started.</h2></div>
-          <div class="faq-list reveal">
-            <details open><summary>Who can create an account?</summary><p>Applicants can register directly. HR accounts are assigned by an authorized administrator to prevent unauthorized access to candidate records.</p></details>
-            <details><summary>How do candidates submit a CV?</summary><p>Applicants can upload a PDF or Word document to private storage and optionally add a portfolio link.</p></details>
-            <details><summary>Can HR managers review and update applications?</summary><p>Yes. Authorized HR users can filter candidates, review full profiles, add notes, schedule interviews, and update recruitment stages.</p></details>
-            <details><summary>Can the platform expand beyond recruitment?</summary><p>Yes. Employee onboarding, leave, payroll, performance reviews, and document management can be added as separate modules.</p></details>
+        <section id="security" class="security-editorial">
+          <div class="security-editorial-copy reveal">
+            <span class="marketing-kicker">Security</span>
+            <h2>Candidate data deserves more than a password.</h2>
+            <p>Sensitive recruitment records are separated by role, and HR access cannot be created from the public registration form.</p>
+          </div>
+          <div class="security-editorial-list reveal">
+            <article><span>01</span><div><strong>Private file storage</strong><p>CV files remain private and are opened with temporary signed links.</p></div></article>
+            <article><span>02</span><div><strong>Role-based database access</strong><p>Applicants see their own records while authorized HR users manage recruitment data.</p></div></article>
+            <article><span>03</span><div><strong>Administrator-controlled HR accounts</strong><p>Public registration creates Applicant accounts only.</p></div></article>
+            <article><span>04</span><div><strong>Clear ownership rules</strong><p>Job and application records follow protected database policies.</p></div></article>
           </div>
         </section>
 
-        <section id="cta" class="final-cta section-band reveal">
-          <span class="eyebrow">Take the next step</span>
-          <h2>Discover open roles or return to your hiring workspace.</h2>
-          <p>Applicants can create a profile in minutes. Authorized HR managers can sign in to manage recruitment.</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button" data-route="signup">Create applicant account</button>
-            <button class="btn btn-secondary" type="button" data-route="signin">Sign in</button>
+        <section id="cta" class="marketing-final-cta reveal">
+          <div>
+            <span class="marketing-kicker">Your next step</span>
+            <h2>Ready for your next opportunity?</h2>
+            <p>Explore open positions and manage every application from one account.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" type="button" data-route="signup">View available jobs</button>
+            <button class="text-cta" type="button" data-route="signin">HR team member? Sign in <span>→</span></button>
           </div>
         </section>
       </section>

@@ -1258,6 +1258,43 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && sidebarOpen) closeMobileSidebar();
 });
 
+function setupMarketingLanding() {
+  const tourTabs = Array.from(document.querySelectorAll("[data-tour-target]"));
+  const tourPanels = Array.from(document.querySelectorAll("[data-tour-panel]"));
+
+  const selectTourPanel = (target) => {
+    tourTabs.forEach((tab) => {
+      const isActive = tab.dataset.tourTarget === target;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+
+    tourPanels.forEach((panel) => {
+      const isActive = panel.dataset.tourPanel === target;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  };
+
+  tourTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectTourPanel(tab.dataset.tourTarget));
+    tab.addEventListener("keydown", (event) => {
+      if (!["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"].includes(event.key)) return;
+      event.preventDefault();
+      const direction = ["ArrowDown", "ArrowRight"].includes(event.key) ? 1 : -1;
+      const nextIndex = (index + direction + tourTabs.length) % tourTabs.length;
+      tourTabs[nextIndex].focus();
+      selectTourPanel(tourTabs[nextIndex].dataset.tourTarget);
+    });
+  });
+
+  document.querySelectorAll(".marketing-mobile-menu [data-route], .marketing-mobile-menu [data-section]").forEach((item) => {
+    item.addEventListener("click", () => item.closest("details")?.removeAttribute("open"));
+  });
+}
+
+setupMarketingLanding();
 setupRevealAnimations();
 setMinimumJobDeadline();
 
