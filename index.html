@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HireFlow HR Management System</title>
+    <meta
+      name="description"
+      content="HireFlow helps teams publish vacancies, review applicants, schedule interviews, and manage hiring decisions in one workspace."
+    />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>HireFlow — Recruitment Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,8 +17,18 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="is-booting">
     <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div id="boot-screen" class="boot-screen" role="status" aria-live="polite">
+      <div class="boot-card">
+        <span class="brand-mark">H</span>
+        <span class="spinner" aria-hidden="true"></span>
+        <strong>Loading HireFlow</strong>
+      </div>
+    </div>
+
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
 
     <header class="site-header">
       <button class="brand text-button" type="button" data-route="landing" aria-label="HireFlow home">
@@ -23,257 +38,198 @@
 
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#roles" data-section="roles">Product</a>
-        <a href="#benefits" data-section="benefits">Use cases</a>
+        <a href="#benefits" data-section="benefits">Features</a>
         <a href="#workflow" data-section="workflow">Workflow</a>
-        <a href="#security" data-section="security">Backend</a>
+        <a href="#security" data-section="security">Security</a>
       </nav>
 
       <div class="header-actions">
         <button class="btn btn-ghost" type="button" data-route="signin">Sign in</button>
-        <button class="btn btn-primary" type="button" data-route="signup">Create account</button>
+        <button class="btn btn-primary" type="button" data-route="signup">Create applicant account</button>
       </div>
     </header>
 
     <main id="main">
       <section id="landing-view" class="view is-active">
-        <section id="top" class="hero remote-hero section-band">
+        <section id="top" class="hero section-band">
           <div class="hero-copy reveal">
-            <div class="hero-pill remote-pill">
-              <span></span>
-              Visible to HR teams and applicants
+            <div class="hero-pill">
+              <span aria-hidden="true"></span>
+              One workspace for every hiring stage
             </div>
-            <h1>HireFlow keeps your recruitment process organized.</h1>
+            <h1>Recruit with clarity, from vacancy to hire.</h1>
             <p>
-              A student-built HR management system for posting jobs, collecting applications,
-              reviewing candidates, and tracking hiring decisions with real Supabase data.
+              Publish roles, organize candidates, schedule interviews, and keep every hiring
+              decision visible in one secure recruitment workspace.
             </p>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-route="signup">Quick start</button>
-              <button class="btn btn-secondary" type="button" data-route="signin">Sign in</button>
+              <button class="btn btn-primary" type="button" data-route="signup">Explore open roles</button>
+              <button class="btn btn-secondary" type="button" data-route="signin">Sign in to workspace</button>
             </div>
             <div class="hero-checks" aria-label="Platform highlights">
-              <span>Role-based portals</span>
-              <span>No mock records</span>
-              <span>Supabase backend</span>
+              <span>Role-based access</span>
+              <span>Centralized candidate review</span>
+              <span>Responsive on every device</span>
             </div>
           </div>
 
-          <div class="remote-product-preview reveal" aria-label="HireFlow product preview">
-            <div class="remote-preview-card">
-              <div class="remote-job-main">
-                <div class="company-dot">HF</div>
-                <h2>HR Assistant</h2>
-                <div class="remote-meta">
-                  <span>Quick apply</span>
-                  <span>Remote</span>
-                  <span>Full-time</span>
+          <div class="product-preview reveal" aria-label="HireFlow dashboard product preview">
+            <div class="preview-shell">
+              <aside class="preview-sidebar" aria-hidden="true">
+                <div class="preview-brand"><span class="brand-mark">H</span><strong>HireFlow</strong></div>
+                <div class="preview-user">
+                  <span class="preview-avatar">AM</span>
+                  <div><strong>Ama Mensah</strong><small>HR Manager</small></div>
                 </div>
-                <h3>Job role</h3>
-                <ul>
-                  <li>Create and publish vacancies for open departments.</li>
-                  <li>Review applicant profiles, cover letters, and CV links.</li>
-                  <li>Schedule interviews and update candidate status.</li>
-                  <li>Keep recruitment decisions visible to the HR team.</li>
-                </ul>
-                <h3>Requirements</h3>
-                <ul>
-                  <li>Applicant and HR manager accounts are separated by role.</li>
-                  <li>All jobs and applications are stored in Supabase.</li>
-                </ul>
-              </div>
-              <aside class="remote-job-aside">
-                <div class="job-badge">remote - Supabase backed</div>
-                <dl>
-                  <div><dt>Open jobs</dt><dd data-preview-jobs>0</dd></div>
-                  <div><dt>Applications</dt><dd data-preview-applications>0</dd></div>
-                  <div><dt>Interviews</dt><dd data-preview-interviews>0</dd></div>
-                  <div><dt>Applied</dt><dd data-stage-count="Applied">0</dd></div>
-                  <div><dt>Screening</dt><dd data-stage-count="Screening">0</dd></div>
-                  <div><dt>Interview</dt><dd data-stage-count="Interview">0</dd></div>
-                </dl>
-                <button class="btn btn-primary full-width" type="button" data-route="signup">Quick apply</button>
+                <span class="preview-nav active">Overview</span>
+                <span class="preview-nav">Jobs</span>
+                <span class="preview-nav">Candidates</span>
+                <span class="preview-nav">Interviews</span>
               </aside>
+              <div class="preview-main">
+                <div class="preview-topbar">
+                  <div><small>Monday, July 13</small><h2>Good morning, Ama</h2></div>
+                  <span class="preview-button">+ Post a job</span>
+                </div>
+                <div class="preview-stats">
+                  <article><span>Open jobs</span><strong>12</strong><small>3 closing soon</small></article>
+                  <article><span>Total candidates</span><strong>186</strong><small>+24 this week</small></article>
+                  <article><span>Interviews</span><strong>8</strong><small>Next: 10:30 AM</small></article>
+                  <article><span>Hired</span><strong>14</strong><small>This quarter</small></article>
+                </div>
+                <div class="preview-grid">
+                  <section class="preview-panel">
+                    <div class="preview-panel-head"><div><small>Candidate pipeline</small><strong>Active applications</strong></div><span>View all</span></div>
+                    <div class="preview-pipeline">
+                      <div><span>Applied</span><strong>42</strong><i style="--bar: 82%"></i></div>
+                      <div><span>Screening</span><strong>21</strong><i style="--bar: 56%"></i></div>
+                      <div><span>Interview</span><strong>8</strong><i style="--bar: 32%"></i></div>
+                      <div><span>Offer</span><strong>4</strong><i style="--bar: 18%"></i></div>
+                    </div>
+                  </section>
+                  <section class="preview-panel">
+                    <div class="preview-panel-head"><div><small>Upcoming</small><strong>Interviews</strong></div></div>
+                    <div class="preview-interview"><span class="preview-avatar purple">KO</span><div><strong>Kofi Owusu</strong><small>Product Designer · 10:30</small></div></div>
+                    <div class="preview-interview"><span class="preview-avatar green">EA</span><div><strong>Esi Addo</strong><small>HR Assistant · 13:00</small></div></div>
+                    <div class="preview-interview"><span class="preview-avatar orange">NB</span><div><strong>Nana Boateng</strong><small>Frontend Developer · 15:30</small></div></div>
+                  </section>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         <section id="roles" class="section roles-section">
           <div class="section-heading reveal">
-            <span class="eyebrow">Two interfaces</span>
-            <h2>Separate experiences for applicants and HR managers.</h2>
-            <p>
-              The project requirement is visible at a glance: public applicant access is separated
-              from internal HR recruitment tools.
-            </p>
+            <span class="eyebrow">Purpose-built portals</span>
+            <h2>A focused experience for candidates and hiring teams.</h2>
+            <p>Each user sees the tools, records, and actions relevant to their role.</p>
           </div>
 
           <div class="role-grid">
             <article class="role-card reveal">
+              <span class="role-icon" aria-hidden="true">01</span>
               <span class="role-kicker">Applicant portal</span>
-              <h3>Apply, track, and stay ready.</h3>
-              <p>
-                Applicants create an account, save profile details, browse open jobs, submit cover
-                letters, and track application status.
-              </p>
+              <h3>Find opportunities and follow every application.</h3>
+              <p>Build a reusable profile, upload a CV, apply to open roles, and see exactly where each application stands.</p>
               <ul class="feature-list">
-                <li>Profile and CV link</li>
-                <li>Available jobs from HR</li>
-                <li>Application status updates</li>
+                <li>Reusable profile and CV</li>
+                <li>Open-role discovery</li>
+                <li>Application and interview tracking</li>
               </ul>
             </article>
 
             <article class="role-card role-card-dark reveal">
-              <span class="role-kicker">HR manager portal</span>
-              <h3>Post jobs and manage recruitment.</h3>
-              <p>
-                HR managers create roles, monitor applications, shortlist candidates, schedule
-                interviews, and record decisions.
-              </p>
+              <span class="role-icon" aria-hidden="true">02</span>
+              <span class="role-kicker">HR workspace</span>
+              <h3>Move candidates forward without losing context.</h3>
+              <p>Publish vacancies, review candidate details, manage stages, add private notes, and schedule interviews.</p>
               <ul class="feature-list">
-                <li>Job publishing workflow</li>
-                <li>Candidate review notes</li>
+                <li>Job publishing and closing</li>
+                <li>Candidate pipeline and filters</li>
                 <li>Interview and decision tracking</li>
               </ul>
             </article>
           </div>
         </section>
 
-        <section id="benefits" class="section">
+        <section id="benefits" class="section benefits-section">
           <div class="section-heading reveal">
-            <span class="eyebrow">Key features</span>
-            <h2>Everything needed for a complete recruitment demo.</h2>
-            <p>
-              The interface is designed for a presentation-ready student project while keeping all
-              records created through Supabase-backed forms.
-            </p>
+            <span class="eyebrow">Core capabilities</span>
+            <h2>The essentials for a faster, more organized hiring process.</h2>
+            <p>Designed to reduce manual follow-up and keep recruitment information in one dependable place.</p>
           </div>
 
           <div class="benefit-grid">
-            <article class="benefit-card reveal">
-              <span class="icon-box">A1</span>
-              <h3>Supabase Auth</h3>
-              <p>Email and password accounts are handled by Supabase, not by custom browser storage.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <span class="icon-box">A2</span>
-              <h3>Role-based profiles</h3>
-              <p>Every user has a profile connected to either Applicant or HR Manager access.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <span class="icon-box">J1</span>
-              <h3>Job posting</h3>
-              <p>HR can publish vacancies with department, location, deadline, description, and requirements.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <span class="icon-box">R1</span>
-              <h3>Review pipeline</h3>
-              <p>Applications move through Applied, Screening, Interview, Offered, Hired, and Rejected.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <span class="icon-box">S1</span>
-              <h3>Secure policies</h3>
-              <p>Supabase row-level security separates applicant data from HR-only actions.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <span class="icon-box">D1</span>
-              <h3>No sample records</h3>
-              <p>Dashboards start empty and display only records created by real users in this project.</p>
-            </article>
+            <article class="benefit-card reveal"><span class="feature-icon">✓</span><h3>Secure account access</h3><p>Authentication and role-aware permissions protect applicant and hiring-team records.</p></article>
+            <article class="benefit-card reveal"><span class="feature-icon">◎</span><h3>Structured candidate profiles</h3><p>Contact details, skills, CV files, cover letters, and application history stay connected.</p></article>
+            <article class="benefit-card reveal"><span class="feature-icon">＋</span><h3>Flexible job publishing</h3><p>Create vacancies with department, workplace type, deadline, description, and requirements.</p></article>
+            <article class="benefit-card reveal"><span class="feature-icon">↗</span><h3>Visible hiring pipeline</h3><p>Move applicants through Applied, Screening, Interview, Offer, Hired, or Rejected stages.</p></article>
+            <article class="benefit-card reveal"><span class="feature-icon">⌁</span><h3>Responsive workspaces</h3><p>Review candidates and manage applications from desktop, tablet, or mobile.</p></article>
+            <article class="benefit-card reveal"><span class="feature-icon">◇</span><h3>Reliable cloud records</h3><p>Recruitment data is stored centrally and refreshed whenever your team makes an update.</p></article>
           </div>
         </section>
 
         <section id="workflow" class="section workflow-section">
           <div class="section-heading reveal">
-            <span class="eyebrow">Workflow visualization</span>
-            <h2>From vacancy to hiring decision.</h2>
+            <span class="eyebrow">Recruitment workflow</span>
+            <h2>Every stage stays connected.</h2>
+            <p>Hiring teams and applicants always know the next step.</p>
           </div>
 
           <div class="workflow-track reveal" aria-label="Recruitment workflow">
-            <div class="workflow-node"><span>01</span><strong>HR posts job</strong><small>Role details are saved in Supabase.</small></div>
-            <div class="workflow-node"><span>02</span><strong>Applicant applies</strong><small>Candidate submits a cover letter.</small></div>
-            <div class="workflow-node"><span>03</span><strong>HR screens</strong><small>Profile, skills, and CV link are reviewed.</small></div>
-            <div class="workflow-node"><span>04</span><strong>Interview scheduled</strong><small>HR records the interview date.</small></div>
-            <div class="workflow-node"><span>05</span><strong>Decision made</strong><small>Status changes to Offered, Hired, or Rejected.</small></div>
-            <div class="workflow-node"><span>06</span><strong>Onboarding begins</strong><small>The system can expand into employee management.</small></div>
+            <div class="workflow-node"><span>01</span><strong>Publish vacancy</strong><small>HR defines the role and opens applications.</small></div>
+            <div class="workflow-node"><span>02</span><strong>Receive applications</strong><small>Candidates submit profiles, CVs, and cover letters.</small></div>
+            <div class="workflow-node"><span>03</span><strong>Screen candidates</strong><small>HR filters profiles and records private notes.</small></div>
+            <div class="workflow-node"><span>04</span><strong>Schedule interviews</strong><small>Shortlisted candidates move into interview.</small></div>
+            <div class="workflow-node"><span>05</span><strong>Make a decision</strong><small>Offers, hires, and rejections are recorded clearly.</small></div>
           </div>
         </section>
 
         <section id="security" class="section security-section">
           <div class="security-panel reveal">
             <div>
-              <span class="eyebrow">Backend and security</span>
-              <h2>Supabase stores the actual project data.</h2>
-              <p>
-                HireFlow uses Supabase Auth for accounts and Supabase Postgres tables for profiles,
-                jobs, and applications. Row-level security keeps applicant and HR actions separate.
-              </p>
+              <span class="eyebrow">Security by design</span>
+              <h2>Candidate information stays in the right hands.</h2>
+              <p>Authentication, private file storage, database policies, and protected HR permissions keep sensitive recruitment records separated by role.</p>
             </div>
             <div class="security-list">
-              <span>Auth: Supabase email/password</span>
-              <span>Tables: profiles, jobs, applications</span>
-              <span>Policies: role-aware row-level security</span>
-              <span>Frontend: HTML, CSS, JavaScript</span>
+              <span><b>01</b> Public registration creates Applicant accounts only</span>
+              <span><b>02</b> HR access is assigned by an authorized administrator</span>
+              <span><b>03</b> Row-level security protects database records</span>
+              <span><b>04</b> CV files use private storage and temporary links</span>
             </div>
           </div>
         </section>
 
-        <section class="section project-section">
+        <section class="section reliability-section">
           <div class="section-heading reveal">
-            <span class="eyebrow">Project architecture</span>
-            <h2>Clear enough to present, practical enough to use.</h2>
+            <span class="eyebrow">A dependable foundation</span>
+            <h2>Simple architecture, clear responsibilities.</h2>
           </div>
-
           <div class="project-grid reveal">
-            <div class="project-card">
-              <span>Frontend</span>
-              <strong>Single-page HTML/CSS/JS app</strong>
-              <p>Responsive landing page, auth screens, applicant dashboard, and HR dashboard.</p>
-            </div>
-            <div class="project-card">
-              <span>Backend</span>
-              <strong>Supabase services</strong>
-              <p>Authentication, database storage, table policies, and live data queries.</p>
-            </div>
-            <div class="project-card">
-              <span>Data model</span>
-              <strong>Profiles, jobs, applications</strong>
-              <p>A compact schema that supports the full recruitment process required by the assignment.</p>
-            </div>
+            <article class="project-card"><span>Experience</span><strong>Responsive web application</strong><p>Dedicated public, applicant, and HR interfaces with accessible navigation and forms.</p></article>
+            <article class="project-card"><span>Platform</span><strong>Supabase services</strong><p>Authentication, PostgreSQL, row-level security, and private CV storage.</p></article>
+            <article class="project-card"><span>Workflow</span><strong>Jobs and applications</strong><p>A focused data model supporting job publishing, candidate review, interviews, and outcomes.</p></article>
           </div>
         </section>
 
         <section id="faq" class="section faq-section">
-          <div class="section-heading reveal">
-            <span class="eyebrow">FAQ</span>
-            <h2>Quick project notes.</h2>
-          </div>
-
+          <div class="section-heading reveal"><span class="eyebrow">Frequently asked questions</span><h2>Everything you need to get started.</h2></div>
           <div class="faq-list reveal">
-            <details open>
-              <summary>Can applicants and HR managers both create accounts?</summary>
-              <p>Yes. During signup, users choose Applicant or HR Manager and are routed to the correct dashboard.</p>
-            </details>
-            <details>
-              <summary>Where does the data come from?</summary>
-              <p>Only from signup, job, profile, and application forms saved to Supabase. The system does not preload fake records.</p>
-            </details>
-            <details>
-              <summary>Can HR managers review applications?</summary>
-              <p>Yes. HR managers can view submitted applications, change recruitment status, add notes, and schedule interviews.</p>
-            </details>
-            <details>
-              <summary>Can this become a full HR system later?</summary>
-              <p>Yes. Payroll, leave requests, employee records, onboarding tasks, and performance reviews can be added as new modules.</p>
-            </details>
+            <details open><summary>Who can create an account?</summary><p>Applicants can register directly. HR accounts are assigned by an authorized administrator to prevent unauthorized access to candidate records.</p></details>
+            <details><summary>How do candidates submit a CV?</summary><p>Applicants can upload a PDF or Word document to private storage and optionally add a portfolio link.</p></details>
+            <details><summary>Can HR managers review and update applications?</summary><p>Yes. Authorized HR users can filter candidates, review full profiles, add notes, schedule interviews, and update recruitment stages.</p></details>
+            <details><summary>Can the platform expand beyond recruitment?</summary><p>Yes. Employee onboarding, leave, payroll, performance reviews, and document management can be added as separate modules.</p></details>
           </div>
         </section>
 
         <section id="cta" class="final-cta section-band reveal">
-          <span class="eyebrow">Start the system</span>
-          <h2>Create an HR Manager account, post a job, then apply as an Applicant.</h2>
-          <p>That simple flow demonstrates both required interfaces and proves that the dashboard is using real Supabase data.</p>
+          <span class="eyebrow">Take the next step</span>
+          <h2>Discover open roles or return to your hiring workspace.</h2>
+          <p>Applicants can create a profile in minutes. Authorized HR managers can sign in to manage recruitment.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary" type="button" data-route="signup">Create account</button>
+            <button class="btn btn-primary" type="button" data-route="signup">Create applicant account</button>
             <button class="btn btn-secondary" type="button" data-route="signin">Sign in</button>
           </div>
         </section>
@@ -282,233 +238,137 @@
       <section id="auth-view" class="view auth-shell">
         <div class="auth-layout">
           <aside class="auth-aside">
-            <span class="eyebrow">Account access</span>
-            <h2>Choose the portal that matches your role.</h2>
-            <p>
-              HR Managers can create and manage recruitment records. Applicants can manage their own
-              profile and submit applications to open jobs.
-            </p>
-            <div class="auth-points">
-              <span>Supabase Auth</span>
-              <span>Role-aware dashboard</span>
-              <span>No mock records</span>
+            <button class="brand text-button auth-brand" type="button" data-route="landing" aria-label="Return to HireFlow home"><span class="brand-mark">H</span><span>HireFlow</span></button>
+            <div class="auth-aside-copy">
+              <span class="eyebrow">Secure account access</span>
+              <h2>Keep your opportunities and applications in one place.</h2>
+              <p>Applicants can register directly. HR managers receive access from an authorized administrator and use the same sign-in form.</p>
             </div>
+            <div class="auth-points"><span>Private applicant records</span><span>Secure CV storage</span><span>Role-aware workspace</span></div>
           </aside>
 
           <div class="auth-card">
             <div>
-              <span class="eyebrow" data-auth-eyebrow>Create account</span>
-              <h1 data-auth-title>Join HireFlow</h1>
-              <p data-auth-copy>
-                Choose your role, create your account, and enter the correct dashboard for your workflow.
-              </p>
+              <span class="eyebrow" data-auth-eyebrow>Create applicant account</span>
+              <h1 data-auth-title>Start your applicant profile</h1>
+              <p data-auth-copy>Create your account to browse roles, submit applications, and track each hiring stage.</p>
             </div>
 
-            <form id="auth-form" class="form-stack">
+            <form id="auth-form" class="form-stack" novalidate>
               <div id="signup-fields" class="form-stack">
-                <label>
-                  Full name
-                  <input id="auth-name" type="text" autocomplete="name" />
-                </label>
-                <label>
-                  Role
-                  <select id="auth-role">
-                    <option value="applicant">Applicant</option>
-                    <option value="hr">HR Manager</option>
-                  </select>
-                </label>
-                <p class="helper-text">Choose HR Manager to post jobs, or Applicant to apply for them.</p>
+                <label>Full name<input id="auth-name" type="text" autocomplete="name" minlength="2" /></label>
+                <p class="helper-text">Public registration creates an Applicant account. HR access is assigned separately.</p>
               </div>
-
-              <label>
-                Email
-                <input id="auth-email" type="email" autocomplete="email" required />
-              </label>
-              <label>
-                Password
-                <input id="auth-password" type="password" autocomplete="current-password" required />
-              </label>
-
+              <label>Email<input id="auth-email" type="email" autocomplete="email" required /></label>
+              <label>Password<input id="auth-password" type="password" autocomplete="current-password" minlength="8" required /></label>
               <p class="form-message" id="auth-message" role="status" aria-live="polite"></p>
               <button class="btn btn-primary full-width" type="submit" data-auth-submit>Create account</button>
             </form>
 
-            <div class="auth-switch">
-              <span data-auth-switch-copy>Already have an account?</span>
-              <button class="text-link" type="button" data-auth-switch>Sign in</button>
-            </div>
+            <div class="auth-switch"><span data-auth-switch-copy>Already have an account?</span><button class="text-link" type="button" data-auth-switch>Sign in</button></div>
           </div>
         </div>
       </section>
 
       <section id="app-view" class="view app-shell">
-        <aside class="app-sidebar">
-          <div class="sidebar-brand">
-            <span class="brand-mark">H</span>
-            <strong>HireFlow</strong>
+        <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+        <aside class="app-sidebar" aria-label="Workspace sidebar">
+          <div class="sidebar-head">
+            <div class="sidebar-brand"><span class="brand-mark">H</span><strong>HireFlow</strong></div>
+            <button id="close-sidebar" class="icon-button sidebar-close" type="button" aria-label="Close navigation">×</button>
           </div>
 
-          <div class="profile-chip">
-            <span class="avatar" data-user-initials>U</span>
-            <div>
-              <strong data-user-name>User</strong>
-              <small data-user-role>Role</small>
-            </div>
-          </div>
-
+          <div class="profile-chip"><span class="avatar" data-user-initials>U</span><div><strong data-user-name>User</strong><small data-user-role>Role</small></div></div>
           <nav id="app-nav" class="app-nav" aria-label="Dashboard navigation"></nav>
-          <button class="btn btn-secondary full-width" type="button" id="logout-button">Sign out</button>
+          <div class="sidebar-footer"><span class="connection-status"><i></i> Connected</span><button class="btn btn-secondary full-width" type="button" id="logout-button">Sign out</button></div>
         </aside>
 
         <section class="app-content">
+          <div class="mobile-appbar">
+            <button id="open-sidebar" class="icon-button" type="button" aria-label="Open navigation">☰</button>
+            <div class="mobile-brand"><span class="brand-mark">H</span><strong>HireFlow</strong></div>
+            <span class="avatar" data-user-initials>U</span>
+          </div>
+
           <div class="app-topbar">
-            <div>
-              <span class="eyebrow" data-dashboard-label>Dashboard</span>
-              <h1 data-dashboard-title>Dashboard</h1>
-            </div>
-            <div class="topbar-note">Live Supabase data</div>
+            <div><span class="eyebrow" data-dashboard-label>Dashboard</span><h1 data-dashboard-title>Dashboard</h1><p data-dashboard-description>Manage your recruitment workspace.</p></div>
+            <button id="topbar-primary-action" class="btn btn-primary" type="button" hidden></button>
+          </div>
+
+          <div id="dashboard-loading" class="dashboard-loading" hidden aria-live="polite">
+            <div class="skeleton-grid"><i></i><i></i><i></i><i></i></div><div class="skeleton-panel"></div>
           </div>
 
           <div id="hr-dashboard" class="dashboard-role">
             <section class="dashboard-panel overview-panel" data-panel="overview">
-              <div class="panel-header">
-                <div>
-                  <h2>Recruitment overview</h2>
-                  <p>Counts update from jobs and applications stored in Supabase.</p>
-                </div>
-              </div>
+              <div class="panel-header"><div><span class="panel-kicker">Live overview</span><h2>Recruitment performance</h2><p>Monitor active roles and candidate movement across the hiring pipeline.</p></div></div>
               <div class="stat-row dashboard-stats">
-                <div class="stat-tile"><span>Open jobs</span><strong id="hr-open-jobs">0</strong></div>
-                <div class="stat-tile"><span>Applications</span><strong id="hr-applications">0</strong></div>
-                <div class="stat-tile accent"><span>Interviews</span><strong id="hr-interviews">0</strong></div>
-                <div class="stat-tile success"><span>Hired</span><strong id="hr-hired">0</strong></div>
+                <article class="stat-tile"><span>Open jobs</span><strong id="hr-open-jobs">0</strong><small>Currently accepting applications</small></article>
+                <article class="stat-tile"><span>Applications</span><strong id="hr-applications">0</strong><small>Across all published roles</small></article>
+                <article class="stat-tile accent"><span>Interviews</span><strong id="hr-interviews">0</strong><small>Candidates in interview stage</small></article>
+                <article class="stat-tile success"><span>Hired</span><strong id="hr-hired">0</strong><small>Successful hiring decisions</small></article>
+              </div>
+              <div class="overview-grid">
+                <section class="embedded-panel"><div class="panel-header compact"><div><h3>Pipeline snapshot</h3><p>Current candidate distribution</p></div></div><div id="hr-overview-pipeline" class="overview-pipeline"></div></section>
+                <section class="embedded-panel"><div class="panel-header compact"><div><h3>Recent applications</h3><p>Latest candidate activity</p></div></div><div id="hr-overview-recent" class="mini-record-list"></div></section>
               </div>
             </section>
 
-            <section class="dashboard-panel" data-panel="jobs">
-              <div class="panel-header">
-                <div>
-                  <h2>Post a job</h2>
-                  <p>Create roles applicants can apply for.</p>
-                </div>
-              </div>
-              <form id="job-form" class="form-grid">
-                <label>
-                  Job title
-                  <input id="job-title" type="text" required />
-                </label>
-                <label>
-                  Department
-                  <input id="job-department" type="text" required />
-                </label>
-                <label>
-                  Location
-                  <input id="job-location" type="text" required />
-                </label>
-                <label>
-                  Deadline
-                  <input id="job-deadline" type="date" required />
-                </label>
-                <label class="span-2">
-                  Description
-                  <textarea id="job-description" rows="4" required></textarea>
-                </label>
-                <label class="span-2">
-                  Requirements
-                  <textarea id="job-requirements" rows="3" required></textarea>
-                </label>
-                <button class="btn btn-primary" type="submit">Publish job</button>
-                <p class="form-message" id="job-message" role="status" aria-live="polite"></p>
+            <section class="dashboard-panel" data-panel="jobs" hidden>
+              <div class="panel-header"><div><span class="panel-kicker">Job management</span><h2>Publish a vacancy</h2><p>Create a clear role applicants can discover and apply for.</p></div></div>
+              <form id="job-form" class="form-grid" novalidate>
+                <label>Job title<input id="job-title" type="text" required /></label>
+                <label>Department<input id="job-department" type="text" required /></label>
+                <label>Location<input id="job-location" type="text" required /></label>
+                <label>Application deadline<input id="job-deadline" type="date" required /></label>
+                <label>Employment type<select id="job-employment-type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select></label>
+                <label>Workplace type<select id="job-workplace-type"><option>On-site</option><option>Hybrid</option><option>Remote</option></select></label>
+                <label>Open positions<input id="job-positions" type="number" min="1" max="100" value="1" required /></label>
+                <label>Salary range <span class="optional">Optional</span><input id="job-salary-range" type="text" placeholder="e.g. GHS 3,000–4,500" /></label>
+                <label class="span-2">Description<textarea id="job-description" rows="5" required></textarea></label>
+                <label class="span-2">Requirements<textarea id="job-requirements" rows="4" required></textarea></label>
+                <div class="form-actions span-2"><button class="btn btn-primary" type="submit">Publish job</button><p class="form-message" id="job-message" role="status" aria-live="polite"></p></div>
               </form>
             </section>
 
-            <section class="dashboard-panel">
-              <div class="panel-header">
-                <div>
-                  <h2>Posted jobs</h2>
-                  <p>Jobs listed here are created by HR users.</p>
-                </div>
-              </div>
+            <section class="dashboard-panel" data-panel="jobs" hidden>
+              <div class="panel-header"><div><span class="panel-kicker">Published roles</span><h2>Manage jobs</h2><p>Close roles that are filled or reopen them when hiring resumes.</p></div></div>
               <div id="hr-jobs-list" class="record-list"></div>
             </section>
 
-            <section class="dashboard-panel" data-panel="applications">
-              <div class="panel-header">
-                <div>
-                  <h2>Applications</h2>
-                  <p>Review candidate submissions and update recruitment progress.</p>
-                </div>
-              </div>
+            <section class="dashboard-panel" data-panel="applications" hidden>
+              <div class="panel-header"><div><span class="panel-kicker">Candidate review</span><h2>Applications</h2><p>Filter candidates, inspect profiles, and keep recruitment stages current.</p></div></div>
               <div class="hr-filter-bar" aria-label="Application filters">
-                <label>
-                  Job
-                  <select id="hr-filter-job">
-                    <option value="all">All jobs</option>
-                  </select>
-                </label>
-                <label>
-                  Status
-                  <select id="hr-filter-status">
-                    <option value="all">All statuses</option>
-                  </select>
-                </label>
-                <label class="span-2">
-                  Search
-                  <input id="hr-filter-search" type="search" placeholder="Search candidate, job, skill, or note" />
-                </label>
+                <label>Job<select id="hr-filter-job"><option value="all">All jobs</option></select></label>
+                <label>Status<select id="hr-filter-status"><option value="all">All statuses</option></select></label>
+                <label class="search-field">Search<input id="hr-filter-search" type="search" placeholder="Candidate, role, skill, or note" /></label>
               </div>
               <div id="hr-pipeline-board" class="pipeline-board" aria-label="Candidate pipeline board"></div>
-              <div id="hr-applications-list" class="record-list"></div>
+              <div id="hr-applications-list" class="application-table-wrap"></div>
             </section>
           </div>
 
           <div id="applicant-dashboard" class="dashboard-role">
             <section class="dashboard-panel overview-panel" data-panel="profile">
-              <div class="panel-header">
-                <div>
-                  <h2>Applicant profile</h2>
-                  <p>Keep your application profile ready before applying.</p>
-                </div>
-              </div>
-              <form id="profile-form" class="form-grid">
-                <label>
-                  Phone
-                  <input id="profile-phone" type="tel" />
-                </label>
-                <label>
-                  Location
-                  <input id="profile-location" type="text" />
-                </label>
-                <label class="span-2">
-                  Skills
-                  <textarea id="profile-skills" rows="3"></textarea>
-                </label>
-                <label class="span-2">
-                  CV or portfolio link
-                  <input id="profile-cv" type="url" placeholder="https://..." />
-                </label>
-                <button class="btn btn-primary" type="submit">Save profile</button>
-                <p class="form-message" id="profile-message" role="status" aria-live="polite"></p>
+              <div class="panel-header"><div><span class="panel-kicker">Applicant profile</span><h2>Complete your profile</h2><p>A complete profile helps hiring teams review your application faster.</p></div><div class="profile-completion"><strong id="profile-completion-value">0%</strong><span>complete</span></div></div>
+              <div class="progress-track" aria-hidden="true"><i id="profile-completion-bar"></i></div>
+              <form id="profile-form" class="form-grid" novalidate>
+                <label>Phone<input id="profile-phone" type="tel" autocomplete="tel" /></label>
+                <label>Location<input id="profile-location" type="text" autocomplete="address-level2" /></label>
+                <label class="span-2">Skills<textarea id="profile-skills" rows="4" placeholder="e.g. Recruitment, Excel, communication"></textarea></label>
+                <label class="span-2">CV upload <span class="optional">PDF, DOC or DOCX · Max 5 MB</span><input id="profile-cv-file" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /><small id="profile-cv-current" class="current-file">No CV uploaded</small></label>
+                <label class="span-2">Portfolio or LinkedIn <span class="optional">Optional</span><input id="profile-cv" type="url" placeholder="https://..." /></label>
+                <div class="form-actions span-2"><button class="btn btn-primary" type="submit">Save profile</button><p class="form-message" id="profile-message" role="status" aria-live="polite"></p></div>
               </form>
             </section>
 
-            <section class="dashboard-panel" data-panel="jobs">
-              <div class="panel-header">
-                <div>
-                  <h2>Available jobs</h2>
-                  <p>Only jobs posted by HR managers appear here.</p>
-                </div>
-              </div>
-              <div id="applicant-jobs-list" class="record-list"></div>
+            <section class="dashboard-panel" data-panel="jobs" hidden>
+              <div class="panel-header"><div><span class="panel-kicker">Open opportunities</span><h2>Available jobs</h2><p>Explore roles that are currently accepting applications.</p></div></div>
+              <div id="applicant-jobs-list" class="record-list job-grid"></div>
             </section>
 
-            <section class="dashboard-panel" data-panel="my-applications">
-              <div class="panel-header">
-                <div>
-                  <h2>My applications</h2>
-                  <p>Track your submitted applications and recruitment status.</p>
-                </div>
-              </div>
+            <section class="dashboard-panel" data-panel="my-applications" hidden>
+              <div class="panel-header"><div><span class="panel-kicker">Your progress</span><h2>My applications</h2><p>Follow every submitted application and upcoming interview.</p></div></div>
               <div id="my-applications-list" class="record-list"></div>
             </section>
           </div>
@@ -516,39 +376,21 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <span>HireFlow HR Management System</span>
-      <span>Applicant portal + HR recruitment portal</span>
-    </footer>
+    <footer class="footer"><span>© 2026 HireFlow</span><span>Recruitment made clear.</span></footer>
 
     <dialog id="application-dialog">
-      <form id="application-form" class="form-stack" method="dialog">
-        <div>
-          <span class="eyebrow">Apply for job</span>
-          <h2 id="application-title">Application</h2>
-        </div>
+      <form id="application-form" class="form-stack" method="dialog" novalidate>
+        <div><span class="eyebrow">Apply for job</span><h2 id="application-title">Application</h2><p>Introduce yourself and explain why you are a strong fit for this role.</p></div>
         <input id="application-job-id" type="hidden" />
-        <label>
-          Cover letter
-          <textarea id="application-cover" rows="6" required></textarea>
-        </label>
+        <label>Cover letter<textarea id="application-cover" rows="7" minlength="80" required></textarea><small class="field-hint">Aim for at least 80 characters.</small></label>
         <p class="form-message" id="application-message" role="status" aria-live="polite"></p>
-        <div class="dialog-actions">
-          <button class="btn btn-secondary" type="button" id="close-application-dialog">Cancel</button>
-          <button class="btn btn-primary" type="submit">Submit application</button>
-        </div>
+        <div class="dialog-actions"><button class="btn btn-secondary" type="button" id="close-application-dialog">Cancel</button><button class="btn btn-primary" type="submit">Submit application</button></div>
       </form>
     </dialog>
 
-    <dialog id="application-detail-dialog" class="wide-dialog">
+    <dialog id="application-detail-dialog" class="drawer-dialog">
       <div class="detail-dialog-shell">
-        <div class="detail-dialog-header">
-          <div>
-            <span class="eyebrow">Candidate profile</span>
-            <h2 id="application-detail-title">Application details</h2>
-          </div>
-          <button class="btn btn-secondary" type="button" id="close-application-detail-dialog">Close</button>
-        </div>
+        <div class="detail-dialog-header"><div><span class="eyebrow">Candidate profile</span><h2 id="application-detail-title">Application details</h2></div><button class="icon-button" type="button" id="close-application-detail-dialog" aria-label="Close candidate details">×</button></div>
         <div id="application-detail-body"></div>
       </div>
     </dialog>
