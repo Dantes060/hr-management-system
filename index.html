@@ -316,60 +316,102 @@
           </div>
 
           <div class="app-topbar">
-            <div><span class="eyebrow" data-dashboard-label>Dashboard</span><h1 data-dashboard-title>Dashboard</h1><p data-dashboard-description>Manage your recruitment workspace.</p></div>
-            <button id="topbar-primary-action" class="btn btn-primary" type="button" hidden></button>
+            <div class="app-topbar-copy"><span class="eyebrow" data-dashboard-label>Dashboard</span><h1 data-dashboard-title>Dashboard</h1><p data-dashboard-description>Manage your recruitment workspace.</p></div>
+            <div class="app-topbar-actions">
+              <button id="dashboard-notifications" class="icon-button notification-button" type="button" aria-label="Open notifications" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+                <span id="notification-count" class="notification-count" hidden>0</span>
+              </button>
+              <button id="topbar-primary-action" class="btn btn-primary" type="button" hidden></button>
+            </div>
+            <div id="notification-popover" class="notification-popover" hidden>
+              <div class="notification-popover-head"><strong>Notifications</strong><span>Live workspace updates</span></div>
+              <div id="notification-list" class="notification-list"></div>
+            </div>
           </div>
 
           <div id="dashboard-loading" class="dashboard-loading" hidden aria-live="polite">
             <div class="skeleton-grid"><i></i><i></i><i></i><i></i></div><div class="skeleton-panel"></div>
           </div>
 
-          <div id="hr-dashboard" class="dashboard-role">
-            <section class="dashboard-panel overview-panel" data-panel="overview">
-              <div class="panel-header"><div><span class="panel-kicker">Live overview</span><h2>Recruitment performance</h2><p>Monitor active roles and candidate movement across the hiring pipeline.</p></div></div>
-              <div class="stat-row dashboard-stats">
-                <article class="stat-tile"><span>Open jobs</span><strong id="hr-open-jobs">0</strong><small>Currently accepting applications</small></article>
-                <article class="stat-tile"><span>Applications</span><strong id="hr-applications">0</strong><small>Across all published roles</small></article>
-                <article class="stat-tile accent"><span>Interviews</span><strong id="hr-interviews">0</strong><small>Candidates in interview stage</small></article>
-                <article class="stat-tile success"><span>Hired</span><strong id="hr-hired">0</strong><small>Successful hiring decisions</small></article>
+          <div id="hr-dashboard" class="dashboard-role hr-dashboard-v2">
+            <section class="dashboard-page" data-panel="overview">
+              <div class="overview-welcome">
+                <div><span class="page-kicker">Today</span><h2 id="hr-greeting">Good morning</h2><p>Here is what needs your attention across the recruitment workspace.</p></div>
+                <div class="overview-date"><strong id="overview-date-day">—</strong><span id="overview-date-full">—</span></div>
               </div>
-              <div class="overview-grid">
-                <section class="embedded-panel"><div class="panel-header compact"><div><h3>Pipeline snapshot</h3><p>Current candidate distribution</p></div></div><div id="hr-overview-pipeline" class="overview-pipeline"></div></section>
-                <section class="embedded-panel"><div class="panel-header compact"><div><h3>Recent applications</h3><p>Latest candidate activity</p></div></div><div id="hr-overview-recent" class="mini-record-list"></div></section>
+
+              <div class="kpi-grid">
+                <article class="kpi-card"><span class="kpi-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span><div><span>Open roles</span><strong id="hr-open-jobs">0</strong><small id="hr-open-jobs-note">Currently accepting applications</small></div></article>
+                <article class="kpi-card"><span class="kpi-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><span>Total candidates</span><strong id="hr-applications">0</strong><small id="hr-applications-note">Across every vacancy</small></div></article>
+                <article class="kpi-card"><span class="kpi-icon warning"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z"/></svg></span><div><span>Interviews</span><strong id="hr-interviews">0</strong><small id="hr-interviews-note">Scheduled or awaiting a date</small></div></article>
+                <article class="kpi-card"><span class="kpi-icon success"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 12 2 2 4-4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/></svg></span><div><span>Hired</span><strong id="hr-hired">0</strong><small id="hr-hired-note">Successful decisions recorded</small></div></article>
+              </div>
+
+              <div class="overview-primary-grid">
+                <article class="workspace-card pipeline-summary-card">
+                  <div class="workspace-card-head"><div><span class="page-kicker">Recruitment funnel</span><h3>Candidate pipeline</h3><p>Click a stage to review the matching candidates.</p></div><button class="text-action" type="button" data-panel-target="candidates">View all candidates</button></div>
+                  <div id="hr-overview-pipeline" class="overview-pipeline-v2"></div>
+                </article>
+                <article class="workspace-card upcoming-card">
+                  <div class="workspace-card-head"><div><span class="page-kicker">Schedule</span><h3>Upcoming interviews</h3><p>Your nearest candidate conversations.</p></div><button class="text-action" type="button" data-panel-target="interviews">Open schedule</button></div>
+                  <div id="hr-upcoming-interviews" class="upcoming-interviews"></div>
+                </article>
+              </div>
+
+              <div class="overview-secondary-grid">
+                <article class="workspace-card recent-candidates-card">
+                  <div class="workspace-card-head"><div><h3>Recent candidates</h3><p>Latest applications received.</p></div></div>
+                  <div id="hr-overview-recent" class="overview-table-wrap"></div>
+                </article>
+                <article class="workspace-card attention-card">
+                  <div class="workspace-card-head"><div><h3>Jobs needing attention</h3><p>Deadlines and vacancies to review.</p></div></div>
+                  <div id="hr-jobs-attention" class="attention-list"></div>
+                </article>
+                <article class="workspace-card activity-card">
+                  <div class="workspace-card-head"><div><h3>Recent activity</h3><p>What changed in the workspace.</p></div></div>
+                  <div id="hr-recent-activity" class="activity-list"></div>
+                </article>
               </div>
             </section>
 
-            <section class="dashboard-panel" data-panel="jobs" hidden>
-              <div class="panel-header"><div><span class="panel-kicker">Job management</span><h2>Publish a vacancy</h2><p>Create a clear role applicants can discover and apply for.</p></div></div>
-              <form id="job-form" class="form-grid" novalidate>
-                <label>Job title<input id="job-title" type="text" required /></label>
-                <label>Department<input id="job-department" type="text" required /></label>
-                <label>Location<input id="job-location" type="text" required /></label>
-                <label>Application deadline<input id="job-deadline" type="date" required /></label>
-                <label>Employment type<select id="job-employment-type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select></label>
-                <label>Workplace type<select id="job-workplace-type"><option>On-site</option><option>Hybrid</option><option>Remote</option></select></label>
-                <label>Open positions<input id="job-positions" type="number" min="1" max="100" value="1" required /></label>
-                <label>Salary range <span class="optional">Optional</span><input id="job-salary-range" type="text" placeholder="e.g. GHS 3,000–4,500" /></label>
-                <label class="span-2">Description<textarea id="job-description" rows="5" required></textarea></label>
-                <label class="span-2">Requirements<textarea id="job-requirements" rows="4" required></textarea></label>
-                <div class="form-actions span-2"><button class="btn btn-primary" type="submit">Publish job</button><p class="form-message" id="job-message" role="status" aria-live="polite"></p></div>
-              </form>
-            </section>
-
-            <section class="dashboard-panel" data-panel="jobs" hidden>
-              <div class="panel-header"><div><span class="panel-kicker">Published roles</span><h2>Manage jobs</h2><p>Close roles that are filled or reopen them when hiring resumes.</p></div></div>
-              <div id="hr-jobs-list" class="record-list"></div>
-            </section>
-
-            <section class="dashboard-panel" data-panel="applications" hidden>
-              <div class="panel-header"><div><span class="panel-kicker">Candidate review</span><h2>Applications</h2><p>Filter candidates, inspect profiles, and keep recruitment stages current.</p></div></div>
-              <div class="hr-filter-bar" aria-label="Application filters">
-                <label>Job<select id="hr-filter-job"><option value="all">All jobs</option></select></label>
-                <label>Status<select id="hr-filter-status"><option value="all">All statuses</option></select></label>
-                <label class="search-field">Search<input id="hr-filter-search" type="search" placeholder="Candidate, role, skill, or note" /></label>
+            <section class="dashboard-page" data-panel="jobs" hidden>
+              <div class="page-toolbar">
+                <div class="segmented-control" aria-label="Filter jobs by status">
+                  <button type="button" class="is-active" data-job-filter="all">All <span id="job-count-all">0</span></button>
+                  <button type="button" data-job-filter="open">Open <span id="job-count-open">0</span></button>
+                  <button type="button" data-job-filter="closed">Closed <span id="job-count-closed">0</span></button>
+                </div>
+                <label class="compact-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="job-search" type="search" placeholder="Search jobs" /></label>
               </div>
-              <div id="hr-pipeline-board" class="pipeline-board" aria-label="Candidate pipeline board"></div>
-              <div id="hr-applications-list" class="application-table-wrap"></div>
+              <div id="hr-jobs-list" class="data-table-shell"></div>
+            </section>
+
+            <section class="dashboard-page" data-panel="candidates" hidden>
+              <div class="candidate-toolbar">
+                <label class="compact-search candidate-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="hr-filter-search" type="search" placeholder="Search candidates, skills, or notes" /></label>
+                <label class="filter-control"><span>Job</span><select id="hr-filter-job"><option value="all">All jobs</option></select></label>
+                <label class="filter-control"><span>Stage</span><select id="hr-filter-status"><option value="all">All stages</option></select></label>
+                <div class="view-switcher" aria-label="Candidate view">
+                  <button type="button" class="is-active" data-candidate-view="table" aria-label="Table view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button>
+                  <button type="button" data-candidate-view="pipeline" aria-label="Pipeline view"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="16" rx="1"/><rect x="17" y="4" width="4" height="16" rx="1"/></svg></button>
+                </div>
+              </div>
+              <div id="active-filter-chips" class="active-filter-chips" aria-live="polite"></div>
+              <div id="candidate-table-view" class="candidate-view is-active"><div id="hr-applications-list" class="data-table-shell"></div></div>
+              <div id="candidate-pipeline-view" class="candidate-view" hidden><div id="hr-pipeline-board" class="pipeline-board-v2" aria-label="Candidate pipeline board"></div></div>
+            </section>
+
+            <section class="dashboard-page" data-panel="interviews" hidden>
+              <div class="interview-summary-grid">
+                <article><span>Scheduled</span><strong id="interview-count-scheduled">0</strong><small>With a confirmed date</small></article>
+                <article><span>Date pending</span><strong id="interview-count-pending">0</strong><small>Candidates already in Interview</small></article>
+                <article><span>This week</span><strong id="interview-count-week">0</strong><small>Upcoming in the next 7 days</small></article>
+              </div>
+              <div class="workspace-card interview-list-card">
+                <div class="workspace-card-head"><div><h3>Interview schedule</h3><p>Review scheduled interviews and candidates awaiting confirmation.</p></div><button class="text-action" type="button" data-panel-target="candidates" data-stage-shortcut="Interview">Review interview candidates</button></div>
+                <div id="hr-interviews-list" class="data-table-shell flat"></div>
+              </div>
             </section>
           </div>
 
@@ -402,6 +444,27 @@
     </main>
 
     <footer class="footer"><span>© 2026 HireFlow</span><span>Recruitment made clear.</span></footer>
+
+    <dialog id="job-dialog" class="job-dialog">
+      <form id="job-form" class="job-dialog-form" method="dialog" novalidate>
+        <div class="dialog-form-header"><div><span class="eyebrow">Create vacancy</span><h2>Publish a new job</h2><p>Add the information applicants need to understand the opportunity.</p></div><button class="icon-button" type="button" id="close-job-dialog" aria-label="Close job form">×</button></div>
+        <section class="form-section"><div class="form-section-heading"><span>01</span><div><h3>Basic information</h3><p>Define the role and where the work happens.</p></div></div><div class="form-grid">
+          <label>Job title<input id="job-title" type="text" required /></label>
+          <label>Department<input id="job-department" type="text" required /></label>
+          <label>Location<input id="job-location" type="text" required /></label>
+          <label>Application deadline<input id="job-deadline" type="date" required /></label>
+          <label>Employment type<select id="job-employment-type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select></label>
+          <label>Workplace type<select id="job-workplace-type"><option>On-site</option><option>Hybrid</option><option>Remote</option></select></label>
+          <label>Open positions<input id="job-positions" type="number" min="1" max="100" value="1" required /></label>
+          <label>Salary range <span class="optional">Optional</span><input id="job-salary-range" type="text" placeholder="e.g. GHS 3,000–4,500" /></label>
+        </div></section>
+        <section class="form-section"><div class="form-section-heading"><span>02</span><div><h3>Role details</h3><p>Explain the work and what a strong candidate should bring.</p></div></div><div class="form-grid">
+          <label class="span-2">Description<textarea id="job-description" rows="6" required></textarea></label>
+          <label class="span-2">Requirements<textarea id="job-requirements" rows="5" required></textarea></label>
+        </div></section>
+        <div class="job-dialog-footer"><p class="form-message" id="job-message" role="status" aria-live="polite"></p><div><button class="btn btn-secondary" type="button" id="cancel-job-dialog">Cancel</button><button class="btn btn-primary" type="submit">Publish job</button></div></div>
+      </form>
+    </dialog>
 
     <dialog id="application-dialog">
       <form id="application-form" class="form-stack" method="dialog" novalidate>
