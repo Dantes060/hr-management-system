@@ -82,7 +82,7 @@
                 </ul>
               </div>
               <aside class="remote-job-aside">
-                <div class="job-badge">remote · Supabase backed</div>
+                <div class="job-badge">remote - Supabase backed</div>
                 <dl>
                   <div><dt>Open jobs</dt><dd data-preview-jobs>0</dd></div>
                   <div><dt>Applications</dt><dd data-preview-applications>0</dd></div>
@@ -439,6 +439,25 @@
                   <p>Review candidate submissions and update recruitment progress.</p>
                 </div>
               </div>
+              <div class="hr-filter-bar" aria-label="Application filters">
+                <label>
+                  Job
+                  <select id="hr-filter-job">
+                    <option value="all">All jobs</option>
+                  </select>
+                </label>
+                <label>
+                  Status
+                  <select id="hr-filter-status">
+                    <option value="all">All statuses</option>
+                  </select>
+                </label>
+                <label class="span-2">
+                  Search
+                  <input id="hr-filter-search" type="search" placeholder="Search candidate, job, skill, or note" />
+                </label>
+              </div>
+              <div id="hr-pipeline-board" class="pipeline-board" aria-label="Candidate pipeline board"></div>
               <div id="hr-applications-list" class="record-list"></div>
             </section>
           </div>
@@ -519,6 +538,19 @@
           <button class="btn btn-primary" type="submit">Submit application</button>
         </div>
       </form>
+    </dialog>
+
+    <dialog id="application-detail-dialog" class="wide-dialog">
+      <div class="detail-dialog-shell">
+        <div class="detail-dialog-header">
+          <div>
+            <span class="eyebrow">Candidate profile</span>
+            <h2 id="application-detail-title">Application details</h2>
+          </div>
+          <button class="btn btn-secondary" type="button" id="close-application-detail-dialog">Close</button>
+        </div>
+        <div id="application-detail-body"></div>
+      </div>
     </dialog>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

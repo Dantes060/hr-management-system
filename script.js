@@ -20,6 +20,11 @@ let state = {
 };
 let authMode = "signup";
 let activePanel = "overview";
+let hrFilters = {
+  jobId: "all",
+  status: "all",
+  query: "",
+};
 
 function normalizeSupabaseUrl(url) {
   return url.trim().replace(/\/rest\/v1\/?$/i, "").replace(/\/auth\/v1\/?$/i, "").replace(/\/+$/, "");
@@ -58,6 +63,10 @@ const elements = {
   jobMessage: document.querySelector("#job-message"),
   hrJobsList: document.querySelector("#hr-jobs-list"),
   hrApplicationsList: document.querySelector("#hr-applications-list"),
+  hrPipelineBoard: document.querySelector("#hr-pipeline-board"),
+  hrFilterJob: document.querySelector("#hr-filter-job"),
+  hrFilterStatus: document.querySelector("#hr-filter-status"),
+  hrFilterSearch: document.querySelector("#hr-filter-search"),
   applicantJobsList: document.querySelector("#applicant-jobs-list"),
   myApplicationsList: document.querySelector("#my-applications-list"),
   profileForm: document.querySelector("#profile-form"),
@@ -68,6 +77,10 @@ const elements = {
   applicationJobId: document.querySelector("#application-job-id"),
   applicationCover: document.querySelector("#application-cover"),
   applicationMessage: document.querySelector("#application-message"),
+  applicationDetailDialog: document.querySelector("#application-detail-dialog"),
+  applicationDetailTitle: document.querySelector("#application-detail-title"),
+  applicationDetailBody: document.querySelector("#application-detail-body"),
+  closeApplicationDetailDialog: document.querySelector("#close-application-detail-dialog"),
 };
 
 function showView(name) {
@@ -413,56 +426,203 @@ function renderJobCardForHr(job) {
 }
 
 function renderHrApplications() {
+  renderHrApplicationFilters();
+
   if (!state.applications.length) {
     elements.hrApplicationsList.innerHTML = emptyState("No applications have been submitted yet.");
+    elements.hrPipelineBoard.innerHTML = "";
     return;
   }
 
-  elements.hrApplicationsList.innerHTML = state.applications
-    .map((application) => {
-      const job = state.jobs.find((item) => item.id === application.job_id);
-      const applicant = state.profiles.find((item) => item.id === application.applicant_id);
-      if (!job || !applicant) return "";
+  const filteredApplications = getFilteredHrApplications();
+  renderHrPipeline(filteredApplications);
+
+  if (!filteredApplications.length) {
+    elements.hrApplicationsList.innerHTML = emptyState("No applications match the selected filters.");
+    return;
+  }
+
+  elements.hrApplicationsList.innerHTML = filteredApplications.map(renderHrApplicationCard).join("");
+}
+
+function renderHrApplicationFilters() {
+  if (!elements.hrFilterJob || !elements.hrFilterStatus || !elements.hrFilterSearch) return;
+
+  const currentJob = hrFilters.jobId;
+  elements.hrFilterJob.innerHTML = [
+    `<option value="all">All jobs</option>`,
+    ...state.jobs.map((job) => `<option value="${job.id}">${escapeHtml(job.title)}</option>`),
+  ].join("");
+  elements.hrFilterJob.value = state.jobs.some((job) => job.id === currentJob) ? currentJob : "all";
+
+  elements.hrFilterStatus.innerHTML = [
+    `<option value="all">All statuses</option>`,
+    ...statusOptions.map((status) => `<option value="${status}">${status}</option>`),
+  ].join("");
+  elements.hrFilterStatus.value = statusOptions.includes(hrFilters.status) ? hrFilters.status : "all";
+  elements.hrFilterSearch.value = hrFilters.query;
+}
+
+function getFilteredHrApplications() {
+  const query = hrFilters.query.trim().toLowerCase();
+
+  return state.applications.filter((application) => {
+    const { job, applicant } = getApplicationContext(application);
+    if (!job || !applicant) return false;
+
+    if (hrFilters.jobId !== "all" && application.job_id !== hrFilters.jobId) return false;
+    if (hrFilters.status !== "all" && application.status !== hrFilters.status) return false;
+
+    if (!query) return true;
+
+    return [applicant.full_name, applicant.phone, applicant.location, applicant.skills, applicant.cv_url, job.title, job.department, application.cover_letter, application.notes]
+      .filter(Boolean)
+      .some((value) => String(value).toLowerCase().includes(query));
+  });
+}
+
+function renderHrPipeline(applications) {
+  elements.hrPipelineBoard.innerHTML = statusOptions
+    .map((status) => {
+      const statusApplications = applications.filter((application) => application.status === status);
+      const cards = statusApplications
+        .slice(0, 4)
+        .map((application) => {
+          const { job, applicant } = getApplicationContext(application);
+          if (!job || !applicant) return "";
+
+          return `
+            <button class="pipeline-card" type="button" data-view-application="${application.id}">
+              <strong>${escapeHtml(applicant.full_name)}</strong>
+              <span>${escapeHtml(job.title)}</span>
+            </button>
+          `;
+        })
+        .join("");
 
       return `
-        <article class="record-card">
-          <div class="record-card-header">
-            <div>
-              <h3>${escapeHtml(applicant.full_name)}</h3>
-              <p>Applied for ${escapeHtml(job.title)}</p>
-            </div>
-            <span class="badge ${statusClass(application.status)}">${escapeHtml(application.status)}</span>
+        <section class="pipeline-column">
+          <div class="pipeline-column-header">
+            <span class="badge ${statusClass(status)}">${status}</span>
+            <strong>${statusApplications.length}</strong>
           </div>
-          <div class="meta-row">
-            <span class="badge neutral">${escapeHtml(applicant.phone || "No phone saved")}</span>
-            <span class="badge neutral">${escapeHtml(applicant.location || "No location saved")}</span>
-            <span class="badge neutral">${escapeHtml(applicant.cv_url || "No CV link saved")}</span>
-          </div>
-          <p><strong>Skills:</strong> ${escapeHtml(applicant.skills || "No skills saved")}</p>
-          <p><strong>Cover letter:</strong> ${escapeHtml(application.cover_letter)}</p>
-          <form class="form-grid application-update-form" data-application-id="${application.id}">
-            <label>
-              Status
-              <select name="status">
-                ${statusOptions
-                  .map((status) => `<option value="${status}" ${status === application.status ? "selected" : ""}>${status}</option>`)
-                  .join("")}
-              </select>
-            </label>
-            <label>
-              Interview date
-              <input name="interviewDate" type="date" value="${escapeHtml(application.interview_date || "")}" />
-            </label>
-            <label class="span-2">
-              HR notes
-              <textarea name="notes" rows="3">${escapeHtml(application.notes || "")}</textarea>
-            </label>
-            <button class="btn btn-primary" type="submit">Update application</button>
-          </form>
-        </article>
+          ${cards || `<div class="pipeline-empty">No candidates</div>`}
+        </section>
       `;
     })
     .join("");
+}
+
+function renderHrApplicationCard(application) {
+  const { job, applicant } = getApplicationContext(application);
+  if (!job || !applicant) return "";
+
+  return `
+    <article class="record-card application-card">
+      <div class="record-card-header">
+        <div>
+          <h3>${escapeHtml(applicant.full_name)}</h3>
+          <p>Applied for ${escapeHtml(job.title)} in ${escapeHtml(job.department)}</p>
+        </div>
+        <span class="badge ${statusClass(application.status)}">${escapeHtml(application.status)}</span>
+      </div>
+      <div class="meta-row">
+        <span class="badge neutral">${escapeHtml(applicant.phone || "No phone saved")}</span>
+        <span class="badge neutral">${escapeHtml(applicant.location || "No location saved")}</span>
+        <span class="badge neutral">${escapeHtml(applicant.cv_url || "No CV link saved")}</span>
+      </div>
+      <p><strong>Skills:</strong> ${escapeHtml(applicant.skills || "No skills saved")}</p>
+      <p><strong>Cover letter:</strong> ${escapeHtml(application.cover_letter)}</p>
+      <div class="card-actions">
+        <button class="btn btn-secondary" type="button" data-view-application="${application.id}">View details</button>
+      </div>
+      ${renderApplicationUpdateForm(application)}
+    </article>
+  `;
+}
+
+function renderApplicationUpdateForm(application) {
+  return `
+    <form class="form-grid application-update-form compact-update-form" data-application-id="${application.id}">
+      <label>
+        Status
+        <select name="status">
+          ${statusOptions.map((status) => `<option value="${status}" ${status === application.status ? "selected" : ""}>${status}</option>`).join("")}
+        </select>
+      </label>
+      <label>
+        Interview date
+        <input name="interviewDate" type="date" value="${escapeHtml(application.interview_date || "")}" />
+      </label>
+      <label class="span-2">
+        HR notes
+        <textarea name="notes" rows="3">${escapeHtml(application.notes || "")}</textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Update application</button>
+    </form>
+  `;
+}
+
+function getApplicationContext(application) {
+  return {
+    job: state.jobs.find((item) => item.id === application.job_id),
+    applicant: state.profiles.find((item) => item.id === application.applicant_id),
+  };
+}
+
+function openApplicationDetail(applicationId) {
+  const application = state.applications.find((item) => item.id === applicationId);
+  if (!application) return;
+
+  const { job, applicant } = getApplicationContext(application);
+  if (!job || !applicant) return;
+
+  elements.applicationDetailTitle.textContent = applicant.full_name;
+  elements.applicationDetailBody.innerHTML = `
+    <div class="detail-layout">
+      <section class="detail-main">
+        <div class="detail-summary">
+          <span class="avatar">${escapeHtml(getInitials(applicant.full_name))}</span>
+          <div>
+            <h3>${escapeHtml(applicant.full_name)}</h3>
+            <p>${escapeHtml(applicant.location || "No location saved")} - ${escapeHtml(applicant.phone || "No phone saved")}</p>
+          </div>
+          <span class="badge ${statusClass(application.status)}">${escapeHtml(application.status)}</span>
+        </div>
+        <div class="detail-section">
+          <h4>Applied role</h4>
+          <p>${escapeHtml(job.title)} - ${escapeHtml(job.department)} - ${escapeHtml(job.location)}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Skills</h4>
+          <p>${escapeHtml(applicant.skills || "No skills saved")}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Cover letter</h4>
+          <p>${escapeHtml(application.cover_letter)}</p>
+        </div>
+        <div class="detail-section">
+          <h4>CV or portfolio</h4>
+          <p>${escapeHtml(applicant.cv_url || "No CV link saved")}</p>
+        </div>
+      </section>
+      <aside class="detail-side">
+        <dl>
+          <div><dt>Current status</dt><dd>${escapeHtml(application.status)}</dd></div>
+          <div><dt>Interview date</dt><dd>${escapeHtml(application.interview_date || "Not scheduled")}</dd></div>
+          <div><dt>Application date</dt><dd>${formatDate(application.created_at)}</dd></div>
+        </dl>
+        <div class="detail-section">
+          <h4>HR notes</h4>
+          <p>${escapeHtml(application.notes || "No notes yet")}</p>
+        </div>
+      </aside>
+    </div>
+    <div class="detail-update">
+      ${renderApplicationUpdateForm(application)}
+    </div>
+  `;
+  elements.applicationDetailDialog.showModal();
 }
 
 function renderApplicantDashboard(profile) {
@@ -666,6 +826,9 @@ async function handleApplicationUpdate(event) {
 
   await loadDashboardData();
   renderApp();
+  if (elements.applicationDetailDialog.open) {
+    elements.applicationDetailDialog.close();
+  }
 }
 
 async function toggleJob(jobId) {
@@ -734,6 +897,11 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function formatDate(value) {
+  if (!value) return "Unknown";
+  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(new Date(value));
+}
+
 function statusClass(status) {
   return `status-${String(status).toLowerCase().replaceAll(" ", "-")}`;
 }
@@ -798,6 +966,22 @@ elements.applicationForm.addEventListener("submit", (event) =>
   runWithFormBusy(elements.applicationForm, () => handleApplicationSubmit(event))
 );
 document.querySelector("#close-application-dialog").addEventListener("click", () => elements.applicationDialog.close());
+elements.closeApplicationDetailDialog.addEventListener("click", () => elements.applicationDetailDialog.close());
+
+elements.hrFilterJob.addEventListener("change", () => {
+  hrFilters.jobId = elements.hrFilterJob.value;
+  renderHrApplications();
+});
+
+elements.hrFilterStatus.addEventListener("change", () => {
+  hrFilters.status = elements.hrFilterStatus.value;
+  renderHrApplications();
+});
+
+elements.hrFilterSearch.addEventListener("input", () => {
+  hrFilters.query = elements.hrFilterSearch.value;
+  renderHrApplications();
+});
 
 document.addEventListener("click", async (event) => {
   const navButton = event.target.closest("[data-panel-target]");
@@ -815,6 +999,11 @@ document.addEventListener("click", async (event) => {
   const toggleButton = event.target.closest("[data-toggle-job]");
   if (toggleButton) {
     await toggleJob(toggleButton.dataset.toggleJob);
+  }
+
+  const detailButton = event.target.closest("[data-view-application]");
+  if (detailButton) {
+    openApplicationDetail(detailButton.dataset.viewApplication);
   }
 });
 
