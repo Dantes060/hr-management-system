@@ -200,8 +200,7 @@ function showToast(title, message = "", isError = false) {
   const toast = document.createElement("div");
   toast.className = `toast${isError ? " is-error" : ""}`;
   toast.innerHTML = `
-    <div></div>
-    <div><strong>${escapeHtml(title)}</strong>${message ? `<span>${escapeHtml(message)}</span>` : ""}</div>
+    <div class="toast-content"><strong>${escapeHtml(title)}</strong>${message ? `<span>${escapeHtml(message)}</span>` : ""}</div>
     <button type="button" aria-label="Dismiss notification">×</button>
   `;
 

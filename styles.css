@@ -2014,11 +2014,11 @@ dialog form {
   display: grid;
   grid-template-columns: 10px minmax(0, 1fr) auto;
   align-items: start;
-  gap: 11px;
+  column-gap: 10px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
-  padding: 14px;
+  padding: 14px 16px;
   box-shadow: var(--shadow-md);
   pointer-events: auto;
   animation: toast-in 220ms ease both;
@@ -2054,10 +2054,22 @@ dialog form {
 }
 
 .toast button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  margin: -5px -7px 0 0;
+  place-items: center;
   border: 0;
+  border-radius: 8px;
   background: transparent;
   color: var(--muted);
   font-size: 1rem;
+  line-height: 1;
+}
+
+.toast button:hover {
+  background: var(--primary-soft);
+  color: var(--ink);
 }
 
 .boot-screen {
