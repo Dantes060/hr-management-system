@@ -149,11 +149,14 @@
         </section>
 
         <section id="workflow" class="process-strip reveal" aria-label="Recruitment process">
-          <span>Post a role</span><i aria-hidden="true">→</i>
+          <span>Post job</span><i aria-hidden="true">→</i>
           <span>Receive applications</span><i aria-hidden="true">→</i>
-          <span>Review candidates</span><i aria-hidden="true">→</i>
+          <span>Screen</span><i aria-hidden="true">→</i>
+          <span>Shortlist</span><i aria-hidden="true">→</i>
           <span>Interview</span><i aria-hidden="true">→</i>
-          <span>Decide</span>
+          <span>Select</span><i aria-hidden="true">→</i>
+          <span>Offer</span><i aria-hidden="true">→</i>
+          <span>Onboard</span>
         </section>
 
         <section id="product" class="product-tour-section">
@@ -405,11 +408,11 @@
             <section class="dashboard-page" data-panel="interviews" hidden>
               <div class="interview-summary-grid">
                 <article><span>Scheduled</span><strong id="interview-count-scheduled">0</strong><small>With a confirmed date</small></article>
-                <article><span>Date pending</span><strong id="interview-count-pending">0</strong><small>Candidates already in Interview</small></article>
+                <article><span>Date pending</span><strong id="interview-count-pending">0</strong><small>Scheduled without a confirmed date</small></article>
                 <article><span>This week</span><strong id="interview-count-week">0</strong><small>Upcoming in the next 7 days</small></article>
               </div>
               <div class="workspace-card interview-list-card">
-                <div class="workspace-card-head"><div><h3>Interview schedule</h3><p>Review scheduled interviews and candidates awaiting confirmation.</p></div><button class="text-action" type="button" data-panel-target="candidates" data-stage-shortcut="Interview">Review interview candidates</button></div>
+                <div class="workspace-card-head"><div><h3>Interview schedule</h3><p>Review scheduled interviews and candidates awaiting confirmation.</p></div><button class="text-action" type="button" data-panel-target="candidates" data-stage-shortcut="Interview Scheduled">Review interview candidates</button></div>
                 <div id="hr-interviews-list" class="data-table-shell flat"></div>
               </div>
             </section>
@@ -480,6 +483,14 @@
       <div class="detail-dialog-shell">
         <div class="detail-dialog-header"><div><span class="eyebrow">Candidate profile</span><h2 id="application-detail-title">Application details</h2></div><button class="icon-button" type="button" id="close-application-detail-dialog" aria-label="Close candidate details">×</button></div>
         <div id="application-detail-body"></div>
+      </div>
+    </dialog>
+
+    <dialog id="offer-letter-dialog" class="offer-letter-dialog">
+      <div class="offer-letter-shell">
+        <div class="detail-dialog-header offer-letter-dialog-head"><div><span class="eyebrow">Employment document</span><h2 id="offer-letter-title">Employment Offer</h2></div><button class="icon-button" type="button" id="close-offer-letter-dialog" aria-label="Close offer letter">×</button></div>
+        <div id="offer-letter-body"></div>
+        <div class="offer-letter-dialog-actions"><button class="btn btn-secondary" type="button" id="print-offer-letter">Print or save as PDF</button><button class="btn btn-primary" type="button" id="done-offer-letter">Done</button></div>
       </div>
     </dialog>
 

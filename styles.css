@@ -6192,3 +6192,652 @@ body[data-view="app"] .footer {
     grid-column: 2;
   }
 }
+
+/* ========================================================================== */
+/* Complete recruitment workflow                                              */
+/* ========================================================================== */
+
+.badge.status-shortlisted,
+.stage-dot.status-shortlisted {
+  background: #e9f0ff;
+  color: #315dc9;
+}
+
+.stage-dot.status-shortlisted {
+  background: #5e7fe8;
+}
+
+.badge.status-interview-scheduled,
+.stage-dot.status-interview-scheduled {
+  background: #fff1da;
+  color: #9a5c0c;
+}
+
+.stage-dot.status-interview-scheduled {
+  background: #dc8b21;
+}
+
+.badge.status-interview-completed,
+.stage-dot.status-interview-completed {
+  background: #f1eaff;
+  color: #7048b8;
+}
+
+.stage-dot.status-interview-completed {
+  background: #8156ca;
+}
+
+.badge.status-selected,
+.stage-dot.status-selected {
+  background: #e8f7f0;
+  color: #14704a;
+}
+
+.stage-dot.status-selected {
+  background: #258c63;
+}
+
+.badge.status-offer-sent,
+.stage-dot.status-offer-sent {
+  background: #e9f4ff;
+  color: #1767a7;
+}
+
+.stage-dot.status-offer-sent {
+  background: #2d82c7;
+}
+
+.badge.status-offer-accepted,
+.stage-dot.status-offer-accepted,
+.badge.status-onboarding,
+.stage-dot.status-onboarding {
+  background: #e5f8ed;
+  color: #167247;
+}
+
+.stage-dot.status-offer-accepted,
+.stage-dot.status-onboarding {
+  background: #24a068;
+}
+
+.badge.status-offer-declined,
+.stage-dot.status-offer-declined,
+.badge.status-withdrawn,
+.stage-dot.status-withdrawn {
+  background: #f1f2f4;
+  color: #68717d;
+}
+
+.stage-dot.status-offer-declined,
+.stage-dot.status-withdrawn {
+  background: #89919c;
+}
+
+.workflow-update-form {
+  display: grid;
+  gap: 16px;
+}
+
+.workflow-next-action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid #dce5fb;
+  border-radius: 11px;
+  background: #f4f7ff;
+  padding: 13px 14px;
+}
+
+.workflow-next-action span {
+  color: #6c7582;
+  font-size: 0.69rem;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.workflow-next-action strong {
+  max-width: 290px;
+  color: #214eaf;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.workflow-field-group {
+  display: grid;
+  gap: 13px;
+  border: 1px solid #e3e6ea;
+  border-radius: 12px;
+  background: #fafbfc;
+  padding: 15px;
+}
+
+.workflow-field-group[hidden] {
+  display: none !important;
+}
+
+.workflow-field-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #e7e9ed;
+  padding-bottom: 11px;
+}
+
+.workflow-field-heading span {
+  color: #20252d;
+  font-size: 0.83rem;
+  font-weight: 780;
+}
+
+.workflow-field-heading small {
+  max-width: 310px;
+  color: #77808d;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.workflow-private-note {
+  border-top: 1px solid #e7e9ed;
+  padding-top: 15px;
+}
+
+.onboarding-checklist-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.check-row {
+  display: flex;
+  min-height: 44px;
+  grid-template-columns: none;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dde1e7;
+  border-radius: 9px;
+  background: #fff;
+  padding: 10px 12px;
+  color: #3d4652;
+  font-size: 0.75rem;
+  font-weight: 680;
+}
+
+.check-row input {
+  width: 17px;
+  min-height: 17px;
+  flex: 0 0 auto;
+  accent-color: #2f64f5;
+}
+
+.application-history-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.application-history-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 12px;
+  padding: 0 0 22px;
+}
+
+.application-history-list li:not(:last-child)::before {
+  position: absolute;
+  top: 15px;
+  bottom: 0;
+  left: 6px;
+  width: 1px;
+  background: #dfe3e8;
+  content: "";
+}
+
+.history-marker {
+  position: relative;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  margin-top: 2px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #7690d8;
+  box-shadow: 0 0 0 1px #cfd5de;
+}
+
+.application-history-list strong,
+.application-history-list small {
+  display: block;
+}
+
+.application-history-list strong {
+  color: #303640;
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.application-history-list small {
+  margin-top: 4px;
+  color: #858d98;
+  font-size: 0.66rem;
+}
+
+.offer-summary-inline {
+  border-color: #d9e5fb;
+  background: #f7f9ff;
+}
+
+.application-workflow-card {
+  gap: 16px;
+}
+
+.applicant-message,
+.applicant-workflow-notice,
+.applicant-onboarding-card {
+  border: 1px solid #dfe4ec;
+  border-radius: 11px;
+  background: #fafbfd;
+  padding: 14px;
+}
+
+.applicant-message {
+  border-left: 3px solid #2f64f5;
+  background: #f5f8ff;
+}
+
+.applicant-message strong,
+.applicant-workflow-notice strong,
+.applicant-workflow-notice span,
+.applicant-workflow-notice small {
+  display: block;
+}
+
+.applicant-message strong,
+.applicant-workflow-notice strong {
+  color: #252b34;
+  font-size: 0.78rem;
+}
+
+.applicant-message p {
+  margin: 5px 0 0;
+  color: #58616d;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.applicant-workflow-notice {
+  display: grid;
+  gap: 6px;
+}
+
+.applicant-workflow-notice span {
+  color: #3e4753;
+  font-size: 0.78rem;
+  font-weight: 680;
+}
+
+.applicant-workflow-notice small {
+  color: #77808c;
+  line-height: 1.45;
+}
+
+.applicant-workflow-notice.offer {
+  border-color: #cfe0ff;
+  background: #f4f7ff;
+}
+
+.applicant-workflow-notice.danger {
+  border-color: #f2cfcf;
+  background: #fff7f7;
+}
+
+.applicant-workflow-notice.neutral {
+  background: #f6f7f8;
+}
+
+.offer-response-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 7px;
+}
+
+.offer-response-actions .btn {
+  min-height: 38px;
+  padding: 0 15px;
+  font-size: 0.72rem;
+}
+
+.text-danger-action {
+  border: 0;
+  background: transparent;
+  color: #bd3f3f;
+  padding: 0;
+  font-size: 0.73rem;
+  font-weight: 750;
+}
+
+.text-danger-action:hover {
+  color: #912b2b;
+  text-decoration: underline;
+}
+
+.full-workflow-timeline {
+  overflow: hidden;
+  border: 1px solid #e3e6eb;
+  border-radius: 11px;
+  background: #fff;
+  padding: 14px;
+}
+
+.full-workflow-timeline ol {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(84px, 1fr));
+  gap: 0;
+  min-width: 890px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.full-workflow-timeline li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  color: #9aa1aa;
+  text-align: center;
+}
+
+.full-workflow-timeline li:not(:last-child)::after {
+  position: absolute;
+  top: 12px;
+  left: calc(50% + 13px);
+  width: calc(100% - 26px);
+  height: 2px;
+  background: #e3e6ea;
+  content: "";
+}
+
+.full-workflow-timeline li.is-complete:not(:last-child)::after {
+  background: #53a877;
+}
+
+.full-workflow-timeline li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 2px solid #d8dde4;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 0.61rem;
+  font-weight: 800;
+}
+
+.full-workflow-timeline li.is-complete > span {
+  border-color: #349262;
+  background: #349262;
+  color: #fff;
+}
+
+.full-workflow-timeline li.is-current > span {
+  border-color: #2f64f5;
+  color: #2f64f5;
+  box-shadow: 0 0 0 4px rgba(47, 100, 245, 0.1);
+}
+
+.full-workflow-timeline li.is-current small {
+  color: #2454c4;
+  font-weight: 800;
+}
+
+.full-workflow-timeline small {
+  max-width: 82px;
+  font-size: 0.6rem;
+  line-height: 1.3;
+}
+
+.terminal-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  border-radius: 8px;
+  background: #f5f6f8;
+  padding: 10px 12px;
+  color: #59626e;
+  font-size: 0.71rem;
+}
+
+.terminal-status strong,
+.terminal-status span {
+  display: block;
+}
+
+.applicant-onboarding-card {
+  display: grid;
+  gap: 11px;
+  border-color: #cfe8d9;
+  background: #f5fbf7;
+}
+
+.applicant-onboarding-card > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.applicant-onboarding-card strong,
+.applicant-onboarding-card span {
+  color: #2f4338;
+  font-size: 0.75rem;
+}
+
+.mini-progress {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfeee5;
+}
+
+.mini-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2c9761;
+}
+
+.applicant-onboarding-card ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.applicant-onboarding-card li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6d766f;
+  font-size: 0.71rem;
+}
+
+.applicant-onboarding-card li.is-complete {
+  color: #277a50;
+  text-decoration: line-through;
+}
+
+.offer-letter-dialog {
+  width: min(790px, calc(100% - 28px));
+  max-height: calc(100dvh - 28px);
+  overflow: auto;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  padding: 0;
+  box-shadow: 0 28px 90px rgba(25, 32, 43, 0.24);
+}
+
+.offer-letter-shell {
+  padding: 22px;
+}
+
+.offer-letter-dialog-head {
+  padding: 0 0 18px;
+}
+
+.offer-letter-document {
+  border: 1px solid #dfe3e9;
+  border-radius: 12px;
+  background: #fff;
+  padding: clamp(24px, 5vw, 48px);
+}
+
+.offer-letter-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e4e7eb;
+  padding-bottom: 22px;
+}
+
+.offer-letter-brand strong,
+.offer-letter-brand small {
+  display: block;
+}
+
+.offer-letter-brand small {
+  margin-top: 3px;
+  color: #7e8793;
+}
+
+.offer-letter-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 25px 0;
+  border-radius: 9px;
+  background: #f6f7f9;
+  padding: 16px;
+}
+
+.offer-letter-meta span,
+.offer-letter-meta strong {
+  display: block;
+}
+
+.offer-letter-meta span {
+  color: #4d5662;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.offer-letter-meta strong {
+  margin-bottom: 3px;
+  color: #8a929c;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.offer-letter-copy {
+  color: #343a43;
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.offer-letter-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+  border-top: 1px solid #e4e7eb;
+  padding-top: 18px;
+}
+
+.offer-letter-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 18px;
+}
+
+@media (max-width: 760px) {
+  .onboarding-checklist-form,
+  .offer-letter-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-next-action,
+  .workflow-field-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workflow-next-action strong,
+  .workflow-field-heading small {
+    max-width: none;
+    text-align: left;
+  }
+
+  .full-workflow-timeline {
+    overflow-x: auto;
+  }
+
+  .offer-letter-shell {
+    padding: 15px;
+  }
+
+  .offer-letter-document {
+    padding: 22px;
+  }
+
+  .offer-letter-dialog-actions,
+  .offer-response-actions {
+    flex-direction: column;
+  }
+
+  .offer-letter-dialog-actions .btn,
+  .offer-response-actions .btn {
+    width: 100%;
+  }
+}
+
+@media print {
+  body > * {
+    display: none !important;
+  }
+
+  #offer-letter-dialog[open] {
+    position: static;
+    display: block !important;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    box-shadow: none;
+  }
+
+  #offer-letter-dialog .offer-letter-dialog-head,
+  #offer-letter-dialog .offer-letter-dialog-actions {
+    display: none !important;
+  }
+
+  #offer-letter-dialog .offer-letter-shell,
+  #offer-letter-dialog .offer-letter-document {
+    border: 0;
+    padding: 0;
+  }
+}
