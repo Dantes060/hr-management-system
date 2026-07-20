@@ -7118,3 +7118,16 @@ body[data-view="app"] .footer {
     padding: 0;
   }
 }
+
+/* Group 1 is the opening landing-page section. */
+.marketing-site > .project-team-section:first-child {
+  padding-top: 72px;
+  padding-bottom: 88px;
+}
+
+@media (max-width: 760px) {
+  .marketing-site > .project-team-section:first-child {
+    padding-top: 56px;
+    padding-bottom: 68px;
+  }
+}
