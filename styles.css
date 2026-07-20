@@ -3953,6 +3953,194 @@ body:not(.is-booting) .boot-screen {
   line-height: 1.55;
 }
 
+
+/* Project team table */
+.project-team-section {
+  width: min(1180px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 112px 0;
+}
+
+.project-team-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.65fr);
+  align-items: end;
+  gap: clamp(32px, 6vw, 90px);
+  margin-bottom: 42px;
+}
+
+.project-team-heading h2 {
+  max-width: 620px;
+  margin: 0;
+  font-size: clamp(2.65rem, 5vw, 4.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.project-team-heading > p {
+  max-width: 560px;
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.team-table-card {
+  overflow: hidden;
+  border: 1px solid var(--marketing-line);
+  border-radius: 20px;
+  background: var(--marketing-surface);
+  box-shadow: 0 24px 70px rgba(23, 25, 31, 0.07);
+}
+
+.team-table-toolbar {
+  display: flex;
+  min-height: 94px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--marketing-line);
+  background: linear-gradient(135deg, #ffffff, #f3f5ff);
+}
+
+.team-table-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-table-toolbar strong,
+.team-table-toolbar small {
+  display: block;
+}
+
+.team-table-toolbar strong {
+  margin-bottom: 3px;
+  color: var(--marketing-ink);
+  font-size: 1rem;
+}
+
+.team-table-toolbar small {
+  color: var(--marketing-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.team-group-mark {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--marketing-ink);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.team-member-count {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  border: 1px solid #dce2f8;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--marketing-blue-dark);
+  padding: 0 13px;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.team-table-scroll {
+  overflow-x: auto;
+}
+
+.project-team-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--marketing-ink);
+  text-align: left;
+}
+
+.project-team-table th,
+.project-team-table td {
+  padding: 20px 28px;
+  border-bottom: 1px solid #ecece7;
+}
+
+.project-team-table th {
+  background: #fafaf7;
+  color: #777c85;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-team-table th:first-child,
+.project-team-table td:first-child {
+  width: 74px;
+  color: #92969e;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-team-table td:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-team-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.project-team-table tbody tr {
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.project-team-table tbody tr:hover {
+  background: #f8f9fd;
+}
+
+.project-team-table strong {
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.project-team-table code {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  border: 1px solid #dfe3ee;
+  border-radius: 9px;
+  background: #f7f8fb;
+  color: #303746;
+  padding: 0 11px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0.035em;
+}
+
+.team-initials {
+  display: grid;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--marketing-soft-blue);
+  color: var(--marketing-blue-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.project-team-table tbody tr:nth-child(2) .team-initials { background: #eaf7ef; color: var(--marketing-green); }
+.project-team-table tbody tr:nth-child(3) .team-initials { background: #f4eeff; color: var(--marketing-purple); }
+.project-team-table tbody tr:nth-child(4) .team-initials { background: #fff0e8; color: var(--marketing-orange); }
+.project-team-table tbody tr:nth-child(5) .team-initials { background: #eef3f7; color: #42586b; }
+
 .marketing-final-cta {
   display: flex;
   width: min(1312px, calc(100% - 44px));
@@ -4064,6 +4252,15 @@ body[data-view="landing"] .footer {
   }
 
   .applicant-copy {
+    max-width: 720px;
+  }
+
+  .project-team-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .project-team-heading > p {
     max-width: 720px;
   }
 
@@ -4242,11 +4439,91 @@ body[data-view="landing"] .footer {
     width: 150px;
   }
 
+  .project-team-section {
+    width: calc(100% - 36px);
+    padding: 92px 0;
+  }
+
+  .project-team-heading {
+    margin-bottom: 30px;
+  }
+
+  .project-team-heading h2 {
+    font-size: clamp(2.35rem, 11vw, 3.4rem);
+  }
+
+  .team-table-toolbar {
+    min-height: 82px;
+    padding: 16px 18px;
+  }
+
+  .project-team-table th,
+  .project-team-table td {
+    padding: 17px 18px;
+  }
+
+  .project-team-table th:first-child,
+  .project-team-table td:first-child {
+    display: none;
+  }
+
   .marketing-final-cta {
     width: calc(100% - 36px);
     min-height: auto;
     margin-bottom: 36px;
     padding: 42px 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .team-member-count {
+    display: none;
+  }
+
+  .team-table-scroll {
+    overflow: visible;
+  }
+
+  .project-team-table,
+  .project-team-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .project-team-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .project-team-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 18px;
+    border-bottom: 1px solid #ecece7;
+  }
+
+  .project-team-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .project-team-table td,
+  .project-team-table td:nth-child(2) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    border: 0;
+    padding: 0;
+  }
+
+  .project-team-table td:nth-child(3) {
+    padding-left: 50px;
   }
 }
 
